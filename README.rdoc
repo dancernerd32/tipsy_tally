@@ -26,3 +26,13 @@ Things you may want to cover:
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
+
+[![Build Status]
+(https://travis-ci.org/dancernerd32/tipsy_tally.svg?branch=master)]
+(https://travis-ci.org/dancernerd32/tipsy_tally)
+[![Code Climate]
+(https://codeclimate.com/github/dancernerd32/tipsy_tally.png)]
+(https://codeclimate.com/github/dancernerd32/tipsy_tally) 
+[![Coverage Status]
+(https://coveralls.io/repos/dancernerd32/tipsy_tally/badge.png)]
+(https://coveralls.io/r/dancernerd32/tipsy_tally)
