@@ -9,12 +9,12 @@ feature "user adds a new drink" do
 # [X]  Successfully adding a drink displays a message stating a new drink has been created
 # [X] Must specify a name, if name is not specified display error message
 # [X] Must specify either alcoholic or non alcoholic, if name is not specified display error message
-# [] If alcoholic, a list of alcohols should apear, allowing the user to pick several
+# [almost...] If alcoholic, a list of alcohols should apear, allowing the user to pick several
 # [X] I can only input drink names that have at least 3 letters.
 # [X] I must input a description
 # [X] I must be signed in to be able to add a drink
 # [] If drink is alcoholic, alcohol types must be specified
-# []
+
   context "user is signed in" do
     before(:each) do
       @existing_user = FactoryGirl.create(:user)
@@ -51,6 +51,7 @@ feature "user adds a new drink" do
       fill_in "Name", with: "Awesome New Beverage"
       choose 'drink_alcoholic_true'
       fill_in "Description", with: "This is the best beverage evar!"
+
       check "Vodka"
       check "Gin"
 
@@ -72,6 +73,19 @@ feature "user adds a new drink" do
       expect(page).to have_content("Name is too short (minimum is 3 characters)")
       expect(page).to have_content("Description can't be blank")
       expect(page).to have_content("Alcoholic Drink? You must choose either Yes or No")
+    end
+
+    scenario "user specifies alcoholic, but does not select any liquors" do
+
+      visit new_drink_path
+
+      fill_in "Name", with: "Awesome New Beverage"
+      choose 'drink_alcoholic_true'
+      fill_in "Description", with: "This is the best beverage evar!"
+
+      click_on "Submit"
+
+      expect(page).to have_content("Drink Liquors can't be blank if alcoholic")
     end
   end
 
