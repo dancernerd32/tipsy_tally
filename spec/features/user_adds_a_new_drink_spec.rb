@@ -13,7 +13,8 @@ feature "user adds a new drink" do
 # [X] I can only input drink names that have at least 3 letters.
 # [X] I must input a description
 # [X] I must be signed in to be able to add a drink
-# [] If drink is alcoholic, alcohol types must be specified
+# [X] If drink is alcoholic, alcohol types must be specified
+# [] Can optionally provide a photo
 
   context "user is signed in" do
     before(:each) do

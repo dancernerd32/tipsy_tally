@@ -19,6 +19,7 @@
     <%= f.label :alcoholic, 'No' %>
     <%= f.radio_button(:alcoholic,'false') %>
   </div>
+  <p>Liquors (if any)</p>
   <div>
     <%= f.collection_check_boxes :liquor_ids,
       @liquors,
