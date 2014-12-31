@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 feature "user adds a new drink" do
 # As a user,
 # I want to be able to create a new drink,
@@ -26,10 +26,10 @@ feature "user adds a new drink" do
 
       visit new_user_session_path
 
-      fill_in 'Email', with: @existing_user.email
-      fill_in 'Password', with: @existing_user.password
+      fill_in "Email", with: @existing_user.email
+      fill_in "Password", with: @existing_user.password
 
-      click_button 'Log in'
+      click_button "Log in"
     end
 
     scenario "signed in user inputs req'd fields correctly, non-alcoholic" do
@@ -37,9 +37,8 @@ feature "user adds a new drink" do
       visit new_drink_path
 
       fill_in "Name", with: "Awesome New Beverage"
-      choose 'drink_alcoholic_false'
+      choose "drink_alcoholic_false"
       fill_in "Description", with: "This is the best beverage evar!"
-
 
       click_on "Submit"
 
@@ -54,7 +53,7 @@ feature "user adds a new drink" do
       visit new_drink_path
 
       fill_in "Name", with: "Awesome New Beverage"
-      choose 'drink_alcoholic_true'
+      choose "drink_alcoholic_true"
       fill_in "Description", with: "This is the best beverage evar!"
 
       check "Vodka"
