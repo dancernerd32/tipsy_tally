@@ -5,16 +5,20 @@ feature "user adds a new drink" do
 # so that it can be reviewed and viewed in
 
 # Acceptance Critieria:
-# [X] When user creates a new drink, drink page displays the new drinks information
-# [X]  Successfully adding a drink displays a message stating a new drink has been created
+# [X] When user creates a new drink,
+#     drink page displays the new drinks information
+# [X] Successfully adding a drink displays a
+#     message stating a new drink has been created
 # [X] Must specify a name, if name is not specified display error message
-# [X] Must specify either alcoholic or non alcoholic, if name is not specified display error message
-# [almost...] If alcoholic, a list of alcohols should apear, allowing the user to pick several
+# [X] Must specify either alcoholic or non alcoholic,
+#     if name is not specified display error message
+# []  If alcoholic, a list of alcohols should apear,
+#     allowing the user to pick several
 # [X] I can only input drink names that have at least 3 letters.
 # [X] I must input a description
 # [X] I must be signed in to be able to add a drink
 # [X] If drink is alcoholic, alcohol types must be specified
-# [] Can optionally provide a photo
+# []  Can optionally provide a photo
 
   context "user is signed in" do
     before(:each) do
@@ -28,7 +32,7 @@ feature "user adds a new drink" do
       click_button 'Log in'
     end
 
-    scenario "signed in user inputs mandatory fields correctly, non-alcoholic" do
+    scenario "signed in user inputs req'd fields correctly, non-alcoholic" do
 
       visit new_drink_path
 
@@ -71,9 +75,9 @@ feature "user adds a new drink" do
       click_on "Submit"
 
       expect(page).to have_content("Name can't be blank")
-      expect(page).to have_content("Name is too short (minimum is 3 characters)")
+      expect(page).to have_content("(minimum is 3 characters)")
       expect(page).to have_content("Description can't be blank")
-      expect(page).to have_content("Alcoholic Drink? You must choose either Yes or No")
+      expect(page).to have_content("You must choose either Yes or No")
     end
 
     scenario "user specifies alcoholic, but does not select any liquors" do
@@ -98,7 +102,7 @@ feature "user adds a new drink" do
 
       click_on "New Drink"
 
-      expect(page).to have_content("You need to sign in or sign up before continuing")
+      expect(page).to have_content("sign up before continuing")
     end
   end
 

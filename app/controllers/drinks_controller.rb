@@ -24,9 +24,11 @@ class DrinksController < ApplicationController
 
   def drink_params
     params.require(:drink).
-      permit(:name,
+      permit(
+        :name,
         :description,
         :alcoholic,
-        liquor_ids: [])
+        liquor_ids: []
+        )
   end
 end
