@@ -84,7 +84,7 @@ feature "user adds a new drink" do
       visit new_drink_path
 
       fill_in "Name", with: "Awesome New Beverage"
-      choose 'drink_alcoholic_true'
+      choose "drink_alcoholic_true"
       fill_in "Description", with: "This is the best beverage evar!"
 
       click_on "Submit"

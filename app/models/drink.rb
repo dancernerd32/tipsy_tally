@@ -12,12 +12,12 @@ class Drink < ActiveRecord::Base
   validates :description, presence: true
   validates :alcoholic,
             inclusion: {
-                          in: [true, false],
-                          message: " Drink? You must choose either Yes or No"
-                        }
+                         in: [true, false],
+                         message: " Drink? You must choose either Yes or No"
+                       }
   validates :liquors,
             presence: {
-                         if: :alcoholic,
-                         message: "can't be blank if alcoholic"
-                       }
+                        if: :alcoholic,
+                        message: "can't be blank if alcoholic"
+                      }
 end
