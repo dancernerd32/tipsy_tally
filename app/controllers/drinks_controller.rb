@@ -3,13 +3,11 @@ class DrinksController < ApplicationController
     authenticate_user!
     @drink = Drink.new
     @liquors = Liquor.all
-    @liquors.each do |liquor|
-      @drink.drink_liquors.build(liquor_id: liquor.id)
-    end
   end
 
   def create
     @drink = Drink.new(drink_params)
+    @liquors = Liquor.all
     @drink.user = current_user
     @drink.save
     if @drink.save
@@ -25,6 +23,10 @@ class DrinksController < ApplicationController
   end
 
   def drink_params
-    params.require(:drink).permit(:name,:description,:alcoholic)
+    params.require(:drink).
+      permit(:name,
+        :description,
+        :alcoholic,
+        liquor_ids: [])
   end
 end

@@ -20,11 +20,11 @@
     <%= f.radio_button(:alcoholic,'false') %>
   </div>
   <div>
-    <% for liquor in Liquor.find(:all) %>
-      <%= check_box_tag "drink[liquor_ids][]", liquor.id, @drink.liquors.include?(liquor) %>
-    <%#= f.fields_for :liquor_drinks do |ff| %>
-        <%#= ff.check_box :liquor_id %>
-    <% end %>
+    <%= f.collection_check_boxes :liquor_ids,
+      @liquors,     
+      :id,
+      :name
+    %>
   </div>
   <div>
     <%= f.label :description %>
