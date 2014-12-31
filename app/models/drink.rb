@@ -10,11 +10,6 @@ class Drink < ActiveRecord::Base
 
   validates :name, presence: true, length: { minimum: 3 }
   validates :description, presence: true
-  validates :alcoholic,
-            inclusion: {
-              in: [true, false],
-              message: " Drink? You must choose either Yes or No"
-            }
   validates :liquors,
             presence: {
               if: :alcoholic,

@@ -53,7 +53,6 @@ feature "user adds a new drink" do
       visit new_drink_path
 
       fill_in "Name", with: "Awesome New Beverage"
-      choose "drink_alcoholic_true"
       fill_in "Description", with: "This is the best beverage evar!"
 
       check "Vodka"
@@ -76,7 +75,6 @@ feature "user adds a new drink" do
       expect(page).to have_content("Name can't be blank")
       expect(page).to have_content("(minimum is 3 characters)")
       expect(page).to have_content("Description can't be blank")
-      expect(page).to have_content("You must choose either Yes or No")
     end
 
     scenario "user specifies alcoholic, but does not select any liquors" do
@@ -84,7 +82,6 @@ feature "user adds a new drink" do
       visit new_drink_path
 
       fill_in "Name", with: "Awesome New Beverage"
-      choose "drink_alcoholic_true"
       fill_in "Description", with: "This is the best beverage evar!"
 
       click_on "Submit"
