@@ -7,8 +7,10 @@ feature 'user registers', %Q{
 } do
 
   # Acceptance Criteria:
-  # * I must specify a valid email address,
+  # * I must specify a valid email address, username,
   #   password, and password confirmation
+  # * Email, username, and password must be unique
+  # * I can optionally provide an avatar
   # * If I don't specify the required information, I am presented with
   #   an error message
 
@@ -26,7 +28,29 @@ feature 'user registers', %Q{
     expect(page).to have_content('Sign Out')
   end
 
-  scenario 'provide valid registration information - with avatar'
+  scenario 'provide valid registration information - with avatar' do
+
+    visit new_user_registration_path
+
+    fill_in 'Email', with: 'john@example.com'
+    fill_in 'Password', with: 'password'
+    fill_in 'Password confirmation', with: 'password'
+    fill_in 'Username', with: 'John'
+    attach_file('user[avatar]', Rails.root + 'spec/fixtures/default_av.jpg')
+
+    click_button 'Sign up'
+
+    # within[id]
+    # expect(find('img')['src']).to have_content "default_av.jpg"
+    expect(page).to have_content('Welcome! You have signed up successfully.')
+    expect(page).to have_content('Sign Out')
+
+
+
+
+
+
+  end
 
   scenario 'provide invalid registration information - field left empty' do
     visit new_user_registration_path
