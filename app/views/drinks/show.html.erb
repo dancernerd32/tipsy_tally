@@ -3,8 +3,11 @@
   Created by: <%= @drink.user.email %>
 </div>
 <div>
-  <% @drink.liquors.each do |liquor| %>
-    <%= liquor.name %>
+  <% if @drink.alcoholic %>
+    <h2>Liquors</h2>
+    <% @drink.liquors.each do |liquor| %>
+      <%= liquor.name %>
+    <% end %>
   <% end %>
 </div>
 <div>

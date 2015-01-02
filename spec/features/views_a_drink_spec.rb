@@ -33,4 +33,14 @@ feature "User views a drink's details", %Q{
     expect(page).to have_content drink.user.email
   end
 
+  scenario "Visitor views details for a non-alcoholic drink" do
+    drink = FactoryGirl.create(:non_alcohol_drink)
+
+    visit drink_path(drink)
+
+    expect(page).not_to have_content "Liquors"
+    expect(page).to have_content drink.name
+    expect(page).to have_content drink.description
+  end
+
 end
