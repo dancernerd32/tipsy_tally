@@ -7,4 +7,15 @@ FactoryGirl.define do
     password_confirmation 'password'
   end
 
+  factory :alcohol_drink, class: Drink do
+    sequence(:name) {|n| "Awesome drink #{n}"}
+    description "This is a really good drink"
+    user
+
+    before(:create) do |drink|
+      drink.liquors << Liquor.find(1)
+      drink.liquors << Liquor.find(2)
+    end
+  end
+
 end

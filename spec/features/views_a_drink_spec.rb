@@ -7,9 +7,9 @@ feature "User views a drink's details", %Q{
   } do
   # Acceptance Criteria:
   #
-  # [] I should see the name of the drink
-  # [] I should see the description of the drink
-  # [] If the drink has alcohol,
+  # [X] I should see the name of the drink
+  # [X] I should see the description of the drink
+  # [X] If the drink has alcohol,
   #    I should see the types of alcohol used to make the drink
   # [] If the drink is non-alcoholic, I don't see the liquors section
   # [] If there are at least 2 reviews,
@@ -19,16 +19,15 @@ feature "User views a drink's details", %Q{
   # [] I should see the username and avatar of the person who added the drink
 
   scenario "Visitor views details of an alcoholic drink" do
-    drink = FactoryGirl.build(:drink)
-    DrinkLiquor.create(drink_id: drink.id, liquor_id: 1)
-    DrinkLiquor.create(drink_id: drink.id, liquor_id: 2)
-    drink.save
+    drink = FactoryGirl.create(:alcohol_drink)
 
-    visit drink_path
+    visit drink_path(drink)
 
     expect(page).to have_content drink.name
     expect(page).to have_content drink.description
-    expect(page).to have_content drink.liquors
+    drink.liquors.each do |liquor|
+      expect(page).to have_content liquor.name
+    end
 
     ###############CHANGE TO USERNAME#######################
     expect(page).to have_content drink.user.email
