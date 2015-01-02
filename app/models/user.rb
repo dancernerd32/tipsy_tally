@@ -18,9 +18,9 @@ class User < ActiveRecord::Base
   end
 
   validates :username,
-            uniqueness:  {case_sensitive: false}
+            uniqueness:  { case_sensitive: false }
 
-  validates_integrity_of  :avatar
+  validates_integrity_of :avatar
   validates_processing_of :avatar
   # or if you will use this variable somwhere else in the code:
   # def login=(login)
