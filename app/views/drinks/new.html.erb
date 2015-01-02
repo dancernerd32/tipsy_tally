@@ -1,0 +1,38 @@
+<h1> New Drink </h1>
+<% if @drink.errors.any? %>
+  <ul>
+    <% @drink.errors.full_messages.each do |message| %>
+      <li> <%= message %> </li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<%= form_for @drink do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :alcoholic, 'Yes' %>
+    <%= f.radio_button(:alcoholic,'true') %>
+    <%= f.label :alcoholic, 'No' %>
+    <%= f.radio_button(:alcoholic,'false') %>
+  </div>
+  <p>Liquors (if any)</p>
+  <div>
+    <%= f.collection_check_boxes :liquor_ids,
+      @liquors,
+      :id,
+      :name
+    %>
+  </div>
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <div>
+    <%= f.submit "Submit" %>
+  </div>
+
+<% end %>

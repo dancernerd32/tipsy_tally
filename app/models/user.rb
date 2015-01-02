@@ -31,4 +31,5 @@ class User < ActiveRecord::Base
   #   @login || self.username || self.email
   # end
 
+  has_many :drinks
 end

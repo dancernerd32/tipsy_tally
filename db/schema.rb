@@ -11,10 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150102194618) do
+ActiveRecord::Schema.define(version: 20150102005036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "drink_liquors", force: :cascade do |t|
+    t.integer "liquor_id", null: false
+    t.integer "drink_id",  null: false
+  end
+
+  create_table "drinks", force: :cascade do |t|
+    t.integer  "user_id",                    null: false
+    t.string   "name",                       null: false
+    t.boolean  "alcoholic",   default: true, null: false
+    t.text     "description",                null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "drinks", ["name"], name: "index_drinks_on_name", unique: true, using: :btree
+
+  create_table "liquors", force: :cascade do |t|
+    t.string "name", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
