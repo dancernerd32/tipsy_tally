@@ -4,10 +4,10 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  #:authentication_keys => [:login]
-   attr_accessor :login
+  # :authentication_keys => [:login]
+  attr_accessor :login
 
-  def self.find_for_database_authentication (warden_conditions)
+  def self.find_for_database_authentication(warden_conditions)
   # def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
@@ -18,9 +18,7 @@ class User < ActiveRecord::Base
   end
 
   validates :username,
-            uniqueness: {
-            case_sensitive: false
-  }
+            uniqueness:  {case_sensitive: false}
 
   validates_integrity_of  :avatar
   validates_processing_of :avatar
@@ -32,4 +30,5 @@ class User < ActiveRecord::Base
   # def login
   #   @login || self.username || self.email
   # end
+
 end
