@@ -10,7 +10,7 @@ feature "user adds a new drink", %Q{
   #     drink page displays the new drinks information
   # [X] Successfully adding a drink displays a
   #     message stating a new drink has been created
-  # [] Must specify a unique name, if name is not specified display error message
+  # [X] Must specify a unique name, if name is not specified display error message
   # [X] Must specify either alcoholic or non alcoholic,
   #     if name is not specified display error message
   # []  If alcoholic, a list of alcohols should appear,
@@ -78,6 +78,19 @@ feature "user adds a new drink", %Q{
       expect(page).to have_content("Name can't be blank")
       expect(page).to have_content("(minimum is 3 characters)")
       expect(page).to have_content("Description can't be blank")
+    end
+
+    scenario "user enters a drink name that already exists" do
+      existing_drink = FactoryGirl.create(:alcohol_drink)
+
+      visit new_drink_path
+
+      fill_in "Name", with: existing_drink.name
+      fill_in "Description", with: existing_drink.description
+
+      click_on "Submit"
+
+      expect(page).to have_content "Name has already been taken"
     end
 
     scenario "user specifies alcoholic, but does not select any liquors" do

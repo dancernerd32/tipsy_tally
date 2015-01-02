@@ -11,7 +11,7 @@ feature "User views a drink's details", %Q{
   # [X] I should see the description of the drink
   # [X] If the drink has alcohol,
   #    I should see the types of alcohol used to make the drink
-  # [] If the drink is non-alcoholic, I don't see the liquors section
+  # [X] If the drink is non-alcoholic, I don't see the liquors section
   # [] If there are at least 2 reviews,
   #    I should see the two most helpful reviews on the drink page
   # [] I should see the average rating for the drink
