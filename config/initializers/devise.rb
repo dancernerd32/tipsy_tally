@@ -13,7 +13,7 @@ Devise.setup do |config|
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
 
   ## Added for username login
-  config.authentication_keys = [ :login ]
+  config.authentication_keys = [:login]
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
