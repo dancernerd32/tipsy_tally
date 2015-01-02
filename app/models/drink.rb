@@ -8,7 +8,10 @@ class Drink < ActiveRecord::Base
   # accepts_nested_attributes_for :drink_liquors
   accepts_nested_attributes_for :liquors
 
-  validates :name, presence: true, length: { minimum: 3 }
+  validates :name,
+            presence: true,
+            length: { minimum: 3 },
+            uniqueness: true
   validates :description, presence: true
   validates :liquors,
             presence: {
