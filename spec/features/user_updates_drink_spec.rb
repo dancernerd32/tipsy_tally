@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'user registers', %Q{
+feature 'user registers', %{
   As an authenticated user
   I want to update an item's information
   So that I can correct errors or provide new information
@@ -26,21 +26,29 @@ feature 'user registers', %Q{
     #    displays a message stating the drink has been updated
     # [] If I don't specify the required information, I am
     #    presented with an error message
+
   context 'authenticated user' do
-    @user1 = FactoryGirl.create(:user)
+    before(:each) do
+      @user1 = FactoryGirl.create(:user)
 
-    visit root_path
+      visit root_path
 
-    click_on "Sign in"
 
-    fill_in :email, with: user.email
-    fill_in :password, with: user.password
-    click_on "Log in"
+      click_on "Sign In"
+
+
+      fill_in "Email", with: @user1.email
+      fill_in "Password", with: @user1.password
+      click_on "Log in"
+    end
+
+    scenario 'user views edit page'
 
     scenario 'user updates alcoholic drink with valid information' do
       drink = FactoryGirl.create(:alcohol_drink, user: @user1)
 
       visit drink_path(drink)
+
       click_on 'Edit Drink'
 
       fill_in 'Name', with: "New Name"
@@ -71,9 +79,6 @@ feature 'user registers', %Q{
       expect(page).to have_content "Brandy"
       expect(page).to have_content "Whiskey"
       expect(page).not_to have_content "Vodka"
-
-
-
     end
 
     scenario 'user updates non-alcoholic drink with valid information'
