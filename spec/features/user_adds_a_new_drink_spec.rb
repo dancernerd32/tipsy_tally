@@ -1,5 +1,5 @@
 require "rails_helper"
-feature "user adds a new drink", %Q{
+feature "user adds a new drink", %{
   As a user,
   I want to be able to create a new drink,
   so that it can be reviewed and viewed in
@@ -10,7 +10,8 @@ feature "user adds a new drink", %Q{
   #     drink page displays the new drinks information
   # [X] Successfully adding a drink displays a
   #     message stating a new drink has been created
-  # [X] Must specify a unique name, if name is not specified display error message
+  # [X] Must specify a unique name,
+  #     if name is not specified display error message
   # [X] Must specify either alcoholic or non alcoholic,
   #     if name is not specified display error message
   # []  If alcoholic, a list of alcohols should appear,

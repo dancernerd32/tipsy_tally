@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "User views a drink's details", %Q{
+feature "User views a drink's details", %{
   As a visitor,
   I want to be able to see the details of a drink,
   so that I can decide if I want to have the drink
@@ -29,7 +29,7 @@ feature "User views a drink's details", %Q{
       expect(page).to have_content liquor.name
     end
 
-    ###############CHANGE TO USERNAME#######################
+    ############### CHANGE TO USERNAME #######################
     expect(page).to have_content drink.user.email
   end
 
