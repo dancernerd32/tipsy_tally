@@ -9,18 +9,18 @@ feature 'user registers', %{
     # Acceptance Criteria:
     # [] I must be logged in
     # [] I must be the creator of the drink I want to update
-    # [] I can change the name of a drink
-    # [] I can change the description
+    # [x] I can change the name of a drink
+    # [x] I can change the description
     # [] I must include a name
     # [] I must include a description
     # [] I cannot change whether or not a drink is alcoholic
     # [] If a drink is non-alcoholic, there will be no option
     #    to add a liquor
-    # [] If a drink is alcoholic, you may add or remove
+    # [x] If a drink is alcoholic, you may add or remove
     #    liquors
     # [] If a drink is alcoholic, at least one liquor must be
     #    specified
-    # [] When a user updates a drink, the drink's show page
+    # [x] When a user updates a drink, the drink's show page
     #    displays the drink's new information
     # [] Successfully updating a drink takes you back to the drink page and
     #    displays a message stating the drink has been updated
@@ -79,6 +79,7 @@ feature 'user registers', %{
       expect(page).to have_content "Brandy"
       expect(page).to have_content "Whiskey"
       expect(page).not_to have_content "Vodka"
+      expect(page).to have_content "Successfully updated drink"
     end
 
     scenario 'user updates non-alcoholic drink with valid information'
