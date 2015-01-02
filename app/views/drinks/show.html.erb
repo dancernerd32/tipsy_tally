@@ -1,6 +1,14 @@
 <h1> <%= @drink.name %> </h1>
 <div>
-  <%= @drink.user.email %>
+  Created by: <%= @drink.user.email %>
+</div>
+<div>
+  <% if @drink.alcoholic? %>
+    <h2>Liquors</h2>
+    <% @drink.liquors.each do |liquor| %>
+      <%= liquor.name %>
+    <% end %>
+  <% end %>
 </div>
 <div>
   <p> <%= @drink.description %> </p>
