@@ -1,7 +1,5 @@
 # encoding: utf-8
 class AvatarUploader < CarrierWave::Uploader::Base
-  storage :fog
-
   def default_url
     "https://s3-us-west-2.amazonaws.com/tipsy-tally/default.jpg"
   end
