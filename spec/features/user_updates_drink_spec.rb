@@ -7,8 +7,8 @@ feature 'user registers', %{
   } do
 
     # Acceptance Criteria:
-    # [] I must be logged in
-    # [] I must be the creator of the drink I want to update
+    # [X] I must be logged in
+    # [X] I must be the creator of the drink I want to update
     # [x] I can change the name of a drink
     # [x] I can change the description
     # [X] I must include a name
@@ -41,8 +41,6 @@ feature 'user registers', %{
       fill_in "Password", with: @user1.password
       click_on "Log in"
     end
-
-    scenario "user views edit page"
 
     scenario "user updates alcoholic drink with valid information" do
       drink = FactoryGirl.create(:alcohol_drink, user: @user1)
