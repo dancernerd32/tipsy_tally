@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'homes#index'
-  devise_for :users
+  devise_for :users, except: [:destroy]
 
   resources :drinks, only: [:new, :index, :show, :create]
   # The priority is based upon order of creation: first created -> highest priority.

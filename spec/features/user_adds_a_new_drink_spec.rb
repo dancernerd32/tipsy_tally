@@ -28,7 +28,7 @@ feature "user adds a new drink", %{
 
       visit new_user_session_path
 
-      fill_in "Email", with: @existing_user.email
+      fill_in "Login", with: @existing_user.email
       fill_in "Password", with: @existing_user.password
 
       click_button "Log in"

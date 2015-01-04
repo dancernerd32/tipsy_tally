@@ -56,3 +56,12 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 end
+
+##### DELETES FILES IN SPECIFIED FOLDER SO TEST FILES AREN'T PERSISTING
+RSpec.configure do |config|
+  config.after(:each) do
+    if Rails.env.test?
+      FileUtils.rm_rf(Dir["#{Rails.root}/public/uploads/user/avatar/*"])
+    end
+  end
+end
