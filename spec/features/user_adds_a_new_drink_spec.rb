@@ -28,7 +28,7 @@ feature "user adds a new drink", %{
 
       visit new_user_session_path
 
-      fill_in "Login", with: @existing_user.email
+      fill_in "Login", with: @existing_user.username
       fill_in "Password", with: @existing_user.password
 
       click_button "Log in"
@@ -47,7 +47,7 @@ feature "user adds a new drink", %{
       expect(page).to have_content "Successfully created new drink"
       expect(page).to have_content "Awesome New Beverage"
       expect(page).to have_content "This is the best beverage evar!"
-      expect(page).to have_content @existing_user.email
+      expect(page).to have_content @existing_user.username
     end
 
     scenario "signed in user inputs mandatory fields correctly, alcoholic" do
@@ -67,7 +67,7 @@ feature "user adds a new drink", %{
       expect(page).to have_content "This is the best beverage evar!"
       expect(page).to have_content "Vodka"
       expect(page).to have_content "Gin"
-      expect(page).to have_content @existing_user.email
+      expect(page).to have_content @existing_user.username
     end
 
     scenario "user does not enter mandatory fields" do
