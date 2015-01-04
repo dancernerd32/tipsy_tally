@@ -51,7 +51,6 @@ class DrinksController < ApplicationController
     end
   end
 
-
   private
 
   def drink_params

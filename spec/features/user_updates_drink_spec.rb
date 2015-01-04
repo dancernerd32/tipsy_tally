@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-feature 'user registers', %{
+feature "user registers", %{
   As an authenticated user
   I want to update an item's information
   So that I can correct errors or provide new information
@@ -15,17 +15,17 @@ feature 'user registers', %{
     # [X] I must include a description
     # [X] I cannot change whether or not a drink is alcoholic
     # [X] If a drink is non-alcoholic, there will be no option
-    #    to add a liquor
+    #     to add a liquor
     # [x] If a drink is alcoholic, you may add or remove
-    #    liquors
+    #     liquors
     # [X] If a drink is alcoholic, at least one liquor must be
-    #    specified
+    #     specified
     # [x] When a user updates a drink, the drink's show page
-    #    displays the drink's new information
+    #     displays the drink's new information
     # [X] Successfully updating a drink takes you back to the drink page and
-    #    displays a message stating the drink has been updated
+    #     displays a message stating the drink has been updated
     # [X] If I don't specify the required information, I am
-    #    presented with an error message
+    #     presented with an error message
 
   context "authenticated user" do
     before(:each) do
@@ -33,9 +33,7 @@ feature 'user registers', %{
 
       visit root_path
 
-
       click_on "Sign In"
-
 
       fill_in "Login", with: @user1.email
       fill_in "Password", with: @user1.password
