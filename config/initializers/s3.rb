@@ -1,10 +1,10 @@
 CarrierWave.configure do |config|
   if Rails.env.test? || Rails.env.cucumber?
-        config.storage           = :file
-        config.enable_processing = false
-        config.root              = "#{Rails.root}/tmp"
+    config.storage           = :file
+    config.enable_processing = false
+    config.root              = "#{Rails.root}/tmp"
   else
-        config.storage = :fog
+    config.storage = :fog
   end
   config.fog_credentials = {
     provider:                "AWS",
