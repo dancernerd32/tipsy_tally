@@ -33,7 +33,13 @@ class DrinksController < ApplicationController
       redirect_to drink_path(drink)
     else
       @liquors = Liquor.all
-      @drink = Drink.create(drink_params)
+      if drink.alcoholic?
+        @drink = Drink.create(drink_params)
+      else
+        @drink = Drink.new(drink_params)
+        @drink.alcoholic = false
+        @drink.save
+      end
       render "edit"
     end
   end

@@ -14,7 +14,7 @@ feature 'user registers', %{
     # [X] I must include a name
     # [X] I must include a description
     # [X] I cannot change whether or not a drink is alcoholic
-    # [] If a drink is non-alcoholic, there will be no option
+    # [X] If a drink is non-alcoholic, there will be no option
     #    to add a liquor
     # [x] If a drink is alcoholic, you may add or remove
     #    liquors
@@ -114,6 +114,21 @@ feature 'user registers', %{
       expect(page).to have_content "Name can't be blank"
       expect(page).to have_content "Description can't be blank"
       expect(page).to have_content "can't be blank if alcoholic"
+    end
+
+    scenario "user submits invalid information for non-alcoholic drink" do
+      drink = FactoryGirl.create(:non_alcohol_drink, user: @user1)
+
+      visit edit_drink_path(drink)
+
+      fill_in "Name", with: ""
+      fill_in "Description", with: ""
+      
+      click_on "Submit"
+
+      expect(page).to have_content "Name can't be blank"
+      expect(page).to have_content "Description can't be blank"
+      expect(page).not_to have_content "can't be blank if alcoholic"
     end
 
     scenario "user tries to edit another users drink" do
