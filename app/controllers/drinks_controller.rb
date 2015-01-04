@@ -24,7 +24,10 @@ class DrinksController < ApplicationController
   def edit
     @drink = Drink.find(params[:id])
     @liquors = Liquor.all
-    if @drink.user != current_user
+    if !signed_in?
+      flash[:error] = "You must be signed in to do that"
+      redirect_to drink_path(@drink)
+    elsif @drink.user != current_user
       flash[:error] = "You cannot edit someone else's drink"
       redirect_to drink_path(@drink)
     end

@@ -141,7 +141,14 @@ feature 'user registers', %{
     end
 
   end
-  context "user is not signed in" do
-    scenario "visitor tries to update drink"
+  context "visitor is not signed in" do
+
+    scenario "visitor tries to update drink" do
+      drink = FactoryGirl.create(:alcohol_drink)
+
+      visit edit_drink_path(drink)
+
+      expect(page).to have_content "You must be signed in to do that"
+    end
   end
 end
