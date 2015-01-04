@@ -13,3 +13,8 @@
 <div>
   <p> <%= @drink.description %> </p>
 </div>
+
+
+<% if current_user == @drink.user %>
+  <%= link_to "Edit Drink", edit_drink_path(@drink) %>
+<% end %>
