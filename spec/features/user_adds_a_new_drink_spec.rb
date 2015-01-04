@@ -27,7 +27,7 @@ feature "user adds a new drink", %{
       @existing_user = FactoryGirl.create(:user)
 
       visit new_user_session_path
-      save_and_open_page
+      
       fill_in "Login", with: @existing_user.email
       fill_in "Password", with: @existing_user.password
 
