@@ -9,8 +9,8 @@ feature "User deletes a drink", %{
   # Acceptance Criteria:
   # [X] I must be logged in
   # [X] I can only delete my own drinks
-  # [X] When I delete a drink, I am redirected to the drinks index page and given
-  #     a success message
+  # [X] When I delete a drink, I am redirected to the drinks index page and
+  #     given a success message
   # [X] If I am not logged in, I cannot see the option to delete a drink
   # [X] If the drink is not mine, I cannot see the option to delete the drink
 
@@ -26,7 +26,6 @@ feature "User deletes a drink", %{
       fill_in "Password", with: @user1.password
       click_on "Log in"
     end
-
 
     scenario "User deletes their own alcoholic drink" do
       drink = FactoryGirl.create(:alcohol_drink, user: @user1)
