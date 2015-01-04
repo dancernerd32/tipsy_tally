@@ -123,7 +123,7 @@ feature 'user registers', %{
 
       fill_in "Name", with: ""
       fill_in "Description", with: ""
-      
+
       click_on "Submit"
 
       expect(page).to have_content "Name can't be blank"
@@ -132,6 +132,12 @@ feature 'user registers', %{
     end
 
     scenario "user tries to edit another users drink" do
+      user2 = FactoryGirl.create(:user)
+      drink = FactoryGirl.create(:alcohol_drink, user: user2)
+
+      visit edit_drink_path(drink)
+
+      expect(page).to have_content "You cannot edit someone else's drink"
     end
 
   end
