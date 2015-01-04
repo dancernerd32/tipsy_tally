@@ -9,7 +9,6 @@ class DrinksController < ApplicationController
     @drink = Drink.new(drink_params)
     @liquors = Liquor.all
     @drink.user = current_user
-    @drink.save
     if @drink.save
       flash[:notice] = "Successfully created new drink"
       redirect_to drink_path(@drink)
@@ -28,11 +27,14 @@ class DrinksController < ApplicationController
   end
 
   def update
-    @drink = Drink.find(params[:id])
-    @drink.update(drink_params)
-    if @drink.save
+    drink = Drink.find(params[:id])
+    if drink.update(drink_params)
       flash[:notice] = "Successfully updated drink"
-      redirect_to drink_path(@drink)
+      redirect_to drink_path(drink)
+    else
+      @liquors = Liquor.all
+      @drink = Drink.create(drink_params)
+      render "edit"
     end
   end
 

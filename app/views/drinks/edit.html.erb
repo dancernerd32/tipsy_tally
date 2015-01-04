@@ -1,5 +1,14 @@
 <h1>Edit Drink</h1>
 
+<% if @drink.errors.any? %>
+<ul>
+  <% @drink.errors.full_messages.each do |message| %>
+  <li> <%= message %> </li>
+  <% end %>
+</ul>
+<% end %>
+
+
 <%= form_for @drink do |f| %>
   <div>
     <%= f.label :name %>

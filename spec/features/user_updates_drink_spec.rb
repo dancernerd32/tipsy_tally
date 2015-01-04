@@ -11,23 +11,23 @@ feature 'user registers', %{
     # [] I must be the creator of the drink I want to update
     # [x] I can change the name of a drink
     # [x] I can change the description
-    # [] I must include a name
-    # [] I must include a description
-    # [] I cannot change whether or not a drink is alcoholic
+    # [X] I must include a name
+    # [X] I must include a description
+    # [X] I cannot change whether or not a drink is alcoholic
     # [] If a drink is non-alcoholic, there will be no option
     #    to add a liquor
     # [x] If a drink is alcoholic, you may add or remove
     #    liquors
-    # [] If a drink is alcoholic, at least one liquor must be
+    # [X] If a drink is alcoholic, at least one liquor must be
     #    specified
     # [x] When a user updates a drink, the drink's show page
     #    displays the drink's new information
-    # [] Successfully updating a drink takes you back to the drink page and
+    # [X] Successfully updating a drink takes you back to the drink page and
     #    displays a message stating the drink has been updated
-    # [] If I don't specify the required information, I am
+    # [X] If I don't specify the required information, I am
     #    presented with an error message
 
-  context 'authenticated user' do
+  context "authenticated user" do
     before(:each) do
       @user1 = FactoryGirl.create(:user)
 
@@ -37,22 +37,22 @@ feature 'user registers', %{
       click_on "Sign In"
 
 
-      fill_in "Email", with: @user1.email
+      fill_in "Login", with: @user1.email
       fill_in "Password", with: @user1.password
       click_on "Log in"
     end
 
-    scenario 'user views edit page'
+    scenario "user views edit page"
 
-    scenario 'user updates alcoholic drink with valid information' do
+    scenario "user updates alcoholic drink with valid information" do
       drink = FactoryGirl.create(:alcohol_drink, user: @user1)
 
       visit drink_path(drink)
 
-      click_on 'Edit Drink'
+      click_on "Edit Drink"
 
-      fill_in 'Name', with: "New Name"
-      fill_in 'Description', with: "New Description"
+      fill_in "Name", with: "New Name"
+      fill_in "Description", with: "New Description"
 
       check "Gin"
       check "Liqueur(s)"
@@ -82,12 +82,45 @@ feature 'user registers', %{
       expect(page).to have_content "Successfully updated drink"
     end
 
-    scenario 'user updates non-alcoholic drink with valid information'
-    scenario 'user submits invalid information'
-    scenario 'user tries to edit another users drink'
+    scenario "user updates non-alcoholic drink with valid information" do
+      drink = FactoryGirl.create(:non_alcohol_drink, user: @user1)
+
+      visit drink_path(drink)
+      click_on "Edit Drink"
+
+      fill_in "Name", with: "New Name"
+      fill_in "Description", with: "New Description"
+
+      expect(page).not_to have_content "Tequila"
+      click_on "Submit"
+
+      expect(page).to have_content "New Name"
+      expect(page).to have_content "New Description"
+      expect(page).to have_content "Successfully updated drink"
+    end
+
+    scenario "user submits invalid information for alcoholic drink" do
+      drink = FactoryGirl.create(:alcohol_drink, user: @user1)
+
+      visit edit_drink_path(drink)
+
+      fill_in "Name", with: ""
+      fill_in "Description", with: ""
+      uncheck "Rum"
+      uncheck "Vodka"
+
+      click_on "Submit"
+
+      expect(page).to have_content "Name can't be blank"
+      expect(page).to have_content "Description can't be blank"
+      expect(page).to have_content "can't be blank if alcoholic"
+    end
+
+    scenario "user tries to edit another users drink" do
+    end
 
   end
-  context 'user is not signed in' do
-    scenario 'visitor tries to update drink'
+  context "user is not signed in" do
+    scenario "visitor tries to update drink"
   end
 end
