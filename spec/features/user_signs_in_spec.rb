@@ -40,32 +40,32 @@ feature "user signs in", %{
     expect(page).to_not have_content("Sign Out")
   end
 
-  scenario 'specify invalid credentials-email/password combo not in database' do
+  scenario "specify invalid credentials-email/password combo not in database" do
 
     user = FactoryGirl.create(:user)
 
     visit new_user_session_path
 
-    fill_in 'Login', with: user.email
-    fill_in 'Password', with: "Foobar1235"
+    fill_in "Login", with: user.email
+    fill_in "Password", with: "Foobar1235"
 
-    click_on 'Log in'
-    expect(page).to have_content('Invalid login or password')
+    click_on "Log in"
+    expect(page).to have_content("Invalid login or password")
 
   end
 
-  scenario 'specify invalid credentials - username/password combo not in
-  database' do
+  scenario "specify invalid credentials - username/password combo not in
+  database" do
 
     user = FactoryGirl.create(:user)
 
     visit new_user_session_path
 
-    fill_in 'Login', with: user.username
-    fill_in 'Password', with: "Foobar1235"
+    fill_in "Login", with: user.username
+    fill_in "Password", with: "Foobar1235"
 
-    click_on 'Log in'
-    expect(page).to have_content('Invalid login or password')
+    click_on "Log in"
+    expect(page).to have_content("Invalid login or password")
   end
 
 end
