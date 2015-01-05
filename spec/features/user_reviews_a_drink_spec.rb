@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "User creates a review for a drink" %{
+feature "User creates a review for a drink", %{
   As an authenticated user
   I want to write a review for a specific drink
   So that others can see my opinion
@@ -17,36 +17,44 @@ feature "User creates a review for a drink" %{
     # [] If I enter invalid information, I am presented with an error message
     # and taken back to the drink page
 
+    context "user is signed in" do
+      before(:each) do
+        @existing_user = FactoryGirl.create(:user)
 
-    scenario "user reviews an alcoholic drink - with title and body" do
-      user = FactoryGirl.create(:user)
-      drink = FactoryGirl.create(:alcohol_drink)
-      review = FactoryGirl.build(:alcohol_drink_review)
+        visit new_user_session_path
 
-      visit drink_path(drink)
+        fill_in "Login", with: @existing_user.email
+        fill_in "Password", with: @existing_user.password
 
-      click_on "Write a review of #{drink}"
+        click_button "Log in"
+      end
 
-      choose "review_rating_#{review.rating}"
-      fill_in "Title", :with review.title
-      fill_in "Body", :with review.body
+      scenario "user reviews a drink - with title and body" do
 
-      click_on "Submit"
+        review = FactoryGirl.build(:review)
 
-      expect(page).to have_content "Successfully added your review"
-      expect(page).to have_content "#{drink} Reviews"
-      expect(page).to have_content review.title
-      expect(page).to have_content review.body
-      expect(page).to have_content review.rating
+        visit drink_path(review.drink)
+
+        choose "review_rating_3"
+        fill_in "Title", with: review.title
+        fill_in "Body", with: review.body
+
+        click_on "Submit"
+
+        expect(page).to have_content "Successfully added your review"
+        expect(page).to have_content "#{drink} Reviews"
+        expect(page).to have_content review.title
+        expect(page).to have_content review.body
+        expect(page).to have_content review.rating
+
+      end
+      scenario "user reviews an alcoholic drink - without title and body"
+      scenario "user reviews a non-alcoholic drink - with title and body"
+      scenario "user reviews a non-alcoholic drink - without title and body"
+      scenario "user provides invalid information - no rating"
+      scenario "user provides invalid information - rating greater than 3 for non-
+      alcoholic drink"
+      scenario "visitor tries to review a drink"
 
     end
-    scenario "user reviews an alcoholic drink - without title and body"
-    scenario "user reviews a non-alcoholic drink - with title and body"
-    scenario "user reviews a non-alcoholic drink - without title and body"
-    scenario "user provides invalid information - no rating"
-    scenario "user provides invalid information - rating greater than 3 for non-
-    alcoholic drink"
-    scenario "visitor tries to review a drink"
-
-
   end

@@ -1,6 +1,7 @@
 class Drink < ActiveRecord::Base
   belongs_to :user
   has_many :drink_liquors
+  has_many :reviews
 
   has_many :liquors,
            through: :drink_liquors

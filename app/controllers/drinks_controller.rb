@@ -20,6 +20,7 @@ class DrinksController < ApplicationController
 
   def show
     @drink = Drink.find(params[:id])
+    @review = @drink.reviews.build
   end
 
   def drink_params
