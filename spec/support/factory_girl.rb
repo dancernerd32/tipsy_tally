@@ -6,6 +6,7 @@ FactoryGirl.define do
     password 'password'
     password_confirmation 'password'
     sequence(:username) { |n| "username#{n}" }
+    role "user"
   end
 
   factory :alcohol_drink, class: Drink do
