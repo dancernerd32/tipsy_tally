@@ -31,6 +31,7 @@ feature "User views a drink's details", %{
 
     ############### CHANGE TO USERNAME #######################
     expect(page).to have_content drink.user.email
+    expect(page).not_to have_content "Edit Drink"
   end
 
   scenario "Visitor views details for a non-alcoholic drink" do
@@ -41,6 +42,9 @@ feature "User views a drink's details", %{
     expect(page).not_to have_content "Liquors"
     expect(page).to have_content drink.name
     expect(page).to have_content drink.description
+    expect(page).not_to have_content "Edit Drink"
   end
+
+  scenario "User views another user's drink"
 
 end
