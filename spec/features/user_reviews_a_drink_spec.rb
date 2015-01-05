@@ -32,8 +32,9 @@ feature "User creates a review for a drink", %{
       scenario "user reviews a drink - with title and body" do
 
         review = FactoryGirl.build(:review)
+        review_drink = review.drink
 
-        visit drink_path(review.drink)
+        visit drink_path(review_drink)
 
         choose "review_rating_3"
         fill_in "Title", with: review.title
@@ -42,7 +43,7 @@ feature "User creates a review for a drink", %{
         click_on "Submit"
 
         expect(page).to have_content "Successfully added your review"
-        expect(page).to have_content "#{drink} Reviews"
+        expect(page).to have_content "#{review_drink.name} Reviews"
         expect(page).to have_content review.title
         expect(page).to have_content review.body
         expect(page).to have_content review.rating
