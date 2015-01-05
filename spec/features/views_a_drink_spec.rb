@@ -29,7 +29,6 @@ feature "User views a drink's details", %{
       expect(page).to have_content liquor.name
     end
 
-    ############### CHANGE TO USERNAME #######################
     expect(page).to have_content drink.user.username
     expect(page).not_to have_content "Edit Drink"
   end
