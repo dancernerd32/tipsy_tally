@@ -17,4 +17,5 @@
 
 <% if current_user == @drink.user %>
   <%= link_to "Edit Drink", edit_drink_path(@drink) %>
+  <%= button_to "Delete Drink", drink_path(@drink), method: :delete %>
 <% end %>

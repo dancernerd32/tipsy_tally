@@ -51,6 +51,14 @@ class DrinksController < ApplicationController
     end
   end
 
+  def destroy
+    flash[:notice] = "Successfully deleted drink"
+    redirect_to drinks_path
+  end
+
+  def index
+  end
+
   private
 
   def drink_params
