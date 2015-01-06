@@ -7,7 +7,7 @@ feature "Admin views a list of users", %{
   } do
   #
   # Acceptance Criteria:
-  # [] I must be logged in, and an admin to view the list of users
+  # [X] I must be logged in, and an admin to view the list of users
   # [X] Every user is listed alphabetically by username
   # [X] When I click on a username, I am taken to their user profile
   # [X] I can get to this page by clicking on the option in the admin homepage
@@ -62,6 +62,30 @@ feature "Admin views a list of users", %{
   end
 
   context "User is not an admin" do
-    scenario "User tries to view admin pages"
+
+    before(:each) do
+      user = FactoryGirl.create(:user)
+      visit root_path
+
+      click_on "Sign In"
+
+      fill_in "Login", with: user.email
+      fill_in "Password", with: user.password
+      click_on "Log in"
+    end
+
+    scenario "User tries to view admin pages" do
+      visit root_path
+
+      expect(page).not_to have_content "Admin Panel"
+
+      visit admin_path
+
+      expect(page).to have_content "You are not authorized to view that page"
+
+      visit admin_users_path
+
+      expect(page).to have_content "You are not authorized to view that page"
+    end
   end
 end
