@@ -57,9 +57,10 @@
 
 <h1><%= @drink.name %> Reviews</h1>
 
-<% if @reviews != nil %>
+<% if @reviews %>
   <% @reviews.each do |review| %>
     <div>
+      <%= review.created_at %>
       <%= review.user.username %>
       Rating: <%= review.rating %>
       <h5><%= review.title %></h5>

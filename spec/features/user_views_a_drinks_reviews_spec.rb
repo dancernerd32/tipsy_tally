@@ -18,20 +18,14 @@ feature "User views a drink's reviews", %{
   scenario "User visits a drink's review page" do
     drink = FactoryGirl.create(:drink)
     review = FactoryGirl.create(:review, drink: drink)
-    
-
 
     visit drink_path(drink)
 
-
-
-      expect(page).to have_content review.rating
-      expect(page).to have_content review.user.username
-      expect(page).to have_content review.created_at
-      expect(page).to have_content review.title
-      expect(page).to have_content review.body
-
-
+    expect(page).to have_content review.rating
+    expect(page).to have_content review.user.username
+    expect(page).to have_content review.created_at
+    expect(page).to have_content review.title
+    expect(page).to have_content review.body
   end
 
 
