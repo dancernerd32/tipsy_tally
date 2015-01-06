@@ -35,7 +35,7 @@ feature "User creates a review for a drink", %{
         review_drink = review.drink
 
         visit drink_path(review_drink)
-
+        
         choose "review_rating_3"
         fill_in "Title", with: review.title
         fill_in "Body", with: review.body

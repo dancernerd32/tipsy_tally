@@ -48,7 +48,7 @@ feature "User deletes a drink", %{
     end
 
     scenario "User deletes their own non-alcoholic drink" do
-      drink = FactoryGirl.create(:non_alcohol_drink, user: @user1)
+      drink = FactoryGirl.create(:drink, user: @user1)
 
       visit drink_path(drink)
       click_on "Delete Drink"
@@ -60,7 +60,7 @@ feature "User deletes a drink", %{
     scenario "User looks for delete option for someone else's
     non-alchoholic drink" do
       user2 = FactoryGirl.create(:user)
-      drink = FactoryGirl.create(:non_alcohol_drink, user: user2)
+      drink = FactoryGirl.create(:drink, user: user2)
 
       visit drink_path(drink)
 
@@ -70,7 +70,7 @@ feature "User deletes a drink", %{
 
   context "User is not logged in" do
     scenario "User looks for delete option on a non-alcoholic drink" do
-      drink = FactoryGirl.create(:non_alcohol_drink)
+      drink = FactoryGirl.create(:drink)
 
       visit drink_path(drink)
 

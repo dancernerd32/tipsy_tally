@@ -18,6 +18,7 @@
 <div>
   <%= form_for([@drink, @review]) do |f| %>
     <div>
+      <%= f.label :rating %>
       <%= f.radio_button(:rating, 1) %>
       <%= f.label :rating, 1 %>
       <%= f.radio_button(:rating, 2) %>
