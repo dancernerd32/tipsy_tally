@@ -65,7 +65,6 @@ feature "User creates a review for a drink", %{
       end
     end
 
-
     scenario "visitor tries to review a drink" do
       review = FactoryGirl.build(:review)
       review_drink = review.drink
@@ -77,12 +76,11 @@ feature "User creates a review for a drink", %{
       fill_in "Body", with: review.body
 
       click_on "Submit"
-    
+
       expect(page).to have_content "You must sign in or sign up to leave
        a review"
       expect(page).to have_selector("input", review.title)
 
     end
-
 
   end

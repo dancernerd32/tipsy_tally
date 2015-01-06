@@ -3,7 +3,7 @@ class CreateReviews < ActiveRecord::Migration
     create_table :reviews do |t|
       t.integer :rating, null: false
       t.string :title
-      t.text :body 
+      t.text :body
     end
   end
 end

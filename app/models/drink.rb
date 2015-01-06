@@ -1,9 +1,9 @@
 class Drink < ActiveRecord::Base
   belongs_to :user
   has_many :drink_liquors,
-    dependent: :destroy
+           dependent: :destroy
   has_many :reviews,
-    dependent: :destroy
+           dependent: :destroy
 
   has_many :liquors,
            through: :drink_liquors
