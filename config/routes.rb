@@ -3,12 +3,13 @@ Rails.application.routes.draw do
   devise_for :users, except: [:destroy]
   resources :users, only: [:show]
 
-  resources :drinks, only: [:new, :index, :show, :create, :edit, :update]
+  resources :drinks
 
   namespace :admin do
     get '/', :to => 'dashboards#show'
     resources :users, only: [:index, :show]
   end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
