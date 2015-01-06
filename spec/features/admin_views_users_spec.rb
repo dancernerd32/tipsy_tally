@@ -8,9 +8,9 @@ feature "Admin views a list of users", %{
   #
   # Acceptance Criteria:
   # [] I must be logged in, and an admin to view the list of users
-  # [] Every user is listed alphabetically by username
-  # [] When I click on a username, I am taken to their user profile
-  # [] I can get to this page by clicking on the option in the admin homepage
+  # [X] Every user is listed alphabetically by username
+  # [X] When I click on a username, I am taken to their user profile
+  # [X] I can get to this page by clicking on the option in the admin homepage
 
   context "Admin is signed in" do
     before(:each) do
@@ -43,5 +43,25 @@ feature "Admin views a list of users", %{
       expect(page).to have_content user1.username
       expect(page).to have_content user1.email
     end
+  end
+
+  context "Visitor is not signed in" do
+    scenario "Visitor tries to view admin pages" do
+      visit root_path
+
+      expect(page).not_to have_content "Admin Panel"
+
+      visit admin_path
+
+      expect(page).to have_content "You need to sign in or sign up before continuing"
+
+      visit admin_users_path
+
+      expect(page).to have_content "You need to sign in or sign up before continuing"
+    end
+  end
+
+  context "User is not an admin" do
+    scenario "User tries to view admin pages"
   end
 end

@@ -25,7 +25,6 @@
             <%= link_to "Admin Panel", admin_path %>
           <% end %>
 
-          <li><%= image_tag(current_user.avatar.url(:thumb)) %> </li>
         <%- else -%>
           <li><%= link_to 'Sign Up', new_user_registration_path %></li>
           <li><%= link_to 'Sign In', new_user_session_path %></li>
