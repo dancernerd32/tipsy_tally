@@ -14,7 +14,6 @@ feature "User views a drink's reviews", %{
   #    were provided, I can see them as well
   # [] I can see the option to upvote and the option to downvote each review
 
-
   scenario "User visits a drink's review page" do
     drink = FactoryGirl.create(:drink)
     review = FactoryGirl.create(:review, drink: drink)
