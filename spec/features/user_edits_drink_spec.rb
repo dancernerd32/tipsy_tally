@@ -79,7 +79,7 @@ feature "user registers", %{
     end
 
     scenario "user updates non-alcoholic drink with valid information" do
-      drink = FactoryGirl.create(:non_alcohol_drink, user: @user1)
+      drink = FactoryGirl.create(:drink, user: @user1)
 
       visit drink_path(drink)
       click_on "Edit Drink"
@@ -113,7 +113,7 @@ feature "user registers", %{
     end
 
     scenario "user submits invalid information for non-alcoholic drink" do
-      drink = FactoryGirl.create(:non_alcohol_drink, user: @user1)
+      drink = FactoryGirl.create(:drink, user: @user1)
 
       visit edit_drink_path(drink)
 

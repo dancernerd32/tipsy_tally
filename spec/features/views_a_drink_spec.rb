@@ -34,7 +34,7 @@ feature "User views a drink's details", %{
   end
 
   scenario "Visitor views details for a non-alcoholic drink" do
-    drink = FactoryGirl.create(:non_alcohol_drink)
+    drink = FactoryGirl.create(:drink)
 
     visit drink_path(drink)
 
