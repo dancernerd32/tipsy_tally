@@ -55,6 +55,18 @@
   <% end %>
 </div>
 
+<h1><%= @drink.name %> Reviews</h1>
+
+<% if @reviews != nil %>
+  <% @reviews.each do |review| %>
+    <div>
+      <%= review.user.username %>
+      Rating: <%= review.rating %>
+      <h5><%= review.title %></h5>
+      <p><%= review.body %>
+    </div>
+  <% end %>
+<% end %>
 
 <% if current_user == @drink.user %>
   <%= link_to "Edit Drink", edit_drink_path(@drink) %>
