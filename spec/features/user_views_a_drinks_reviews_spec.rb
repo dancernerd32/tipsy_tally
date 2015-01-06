@@ -27,6 +27,4 @@ feature "User views a drink's reviews", %{
     expect(page).to have_content review.title
     expect(page).to have_content review.body
   end
-
-
 end
