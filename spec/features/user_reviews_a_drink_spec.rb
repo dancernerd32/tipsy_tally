@@ -7,14 +7,14 @@ feature "User creates a review for a drink", %{
   } do
 
     # Acceptance Criteria
-    # [] I must be logged in to write a review
-    # [] I must provide a rating from 1-5
+    # [x] I must be logged in to write a review
+    # [x] I must provide a rating from 1-5
     # [] If a drink is non-alcoholic, my rating must not exceed 3
-    # [] When I am on a drink's page, I can enter my review
-    # [] I can optionally provide a title for the review
-    # [] I can optionally provide a body for the review
-    # [] If I submit my review successfully, it appears in the reviews page
-    # [] If I enter invalid information, I am presented with an error message
+    # [x] When I am on a drink's page, I can enter my review
+    # [x] I can optionally provide a title for the review
+    # [x] I can optionally provide a body for the review
+    # [x] If I submit my review successfully, it appears in the reviews page
+    # [x] If I enter invalid information, I am presented with an error message
     # and taken back to the drink page
 
     context "user is signed in" do
@@ -35,7 +35,7 @@ feature "User creates a review for a drink", %{
         review_drink = review.drink
 
         visit drink_path(review_drink)
-        
+
         choose "review_rating_3"
         fill_in "Title", with: review.title
         fill_in "Body", with: review.body
@@ -49,13 +49,40 @@ feature "User creates a review for a drink", %{
         expect(page).to have_content review.rating
 
       end
-      scenario "user reviews an alcoholic drink - without title and body"
-      scenario "user reviews a non-alcoholic drink - with title and body"
-      scenario "user reviews a non-alcoholic drink - without title and body"
-      scenario "user provides invalid information - no rating"
-      scenario "user provides invalid information - rating greater than 3 for non-
-      alcoholic drink"
-      scenario "visitor tries to review a drink"
+
+      scenario "user provides invalid information - no rating" do
+
+        review = FactoryGirl.build(:review)
+        review_drink = review.drink
+
+        visit drink_path(review_drink)
+
+        click_on "Submit"
+
+        expect(page).to have_content "Rating can't be blank"
+        expect(page).to have_content review_drink.name
+
+      end
+    end
+
+
+    scenario "visitor tries to review a drink" do
+      review = FactoryGirl.build(:review)
+      review_drink = review.drink
+
+      visit drink_path(review_drink)
+
+      choose "review_rating_3"
+      fill_in "Title", with: review.title
+      fill_in "Body", with: review.body
+
+      click_on "Submit"
+
+      expect(page).to have_content "You need to sign in or sign up before
+      continuing"
+      expect(page).to have_content "Log in"
 
     end
+
+
   end

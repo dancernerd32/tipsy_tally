@@ -1,11 +1,14 @@
 class ReviewsController < ApplicationController
   def create
+    authenticate_user!
     @drink = Drink.find(params[:drink_id])
     @review = @drink.reviews.build(review_params)
     @review.user_id = current_user.id
     if @review.save
       flash[:notice] = "Successfully added your review"
       redirect_to drink_reviews_path(@drink)
+    else
+      render 'drinks/show'
     end
   end
 

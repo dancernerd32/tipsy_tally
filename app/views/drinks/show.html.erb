@@ -14,9 +14,20 @@
   <p> <%= @drink.description %> </p>
 </div>
 
+<div>
+  <% if @review.errors.any? %>
+  <ul>
+    <% @review.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+  <% end %>
+</div>
 
 <div>
+
   <%= form_for([@drink, @review]) do |f| %>
+
     <div>
       <%= f.label :rating %>
       <%= f.radio_button(:rating, 1) %>
