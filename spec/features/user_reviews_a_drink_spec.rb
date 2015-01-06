@@ -77,10 +77,10 @@ feature "User creates a review for a drink", %{
       fill_in "Body", with: review.body
 
       click_on "Submit"
-
-      expect(page).to have_content "You need to sign in or sign up before
-      continuing"
-      expect(page).to have_content "Log in"
+    
+      expect(page).to have_content "You must sign in or sign up to leave
+       a review"
+      expect(page).to have_selector("input", review.title)
 
     end
 
