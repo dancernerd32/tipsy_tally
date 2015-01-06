@@ -1,6 +1,6 @@
 <h1> <%= @drink.name %> </h1>
 <div>
-  Created by: <%= @drink.user.email %>
+  Created by: <%= @drink.user.username %>
 </div>
 <div>
   <% if @drink.alcoholic? %>
@@ -13,6 +13,7 @@
 <div>
   <p> <%= @drink.description %> </p>
 </div>
+
 
 <div>
   <%= form_for([@drink, @review]) do |f| %>
@@ -41,3 +42,9 @@
     </div>
   <% end %>
 </div>
+
+
+<% if current_user == @drink.user %>
+  <%= link_to "Edit Drink", edit_drink_path(@drink) %>
+  <%= button_to "Delete Drink", drink_path(@drink), method: :delete %>
+<% end %>
