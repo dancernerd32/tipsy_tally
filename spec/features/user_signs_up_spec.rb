@@ -24,6 +24,7 @@ feature "user registers", %{
 
     click_button "Sign up"
 
+    expect(find("img")["src"]).to have_content "default.jpg"
     expect(page).to have_content("Welcome! You have signed up successfully.")
     expect(page).to have_content("Sign Out")
   end
@@ -40,7 +41,7 @@ feature "user registers", %{
     click_button "Sign up"
 
     # within[id]
-    # expect(find('img')['src']).to have_content "default_av.jpg"
+    expect(find("img")["src"]).to have_content "default_av.jpg"
     expect(page).to have_content("Welcome! You have signed up successfully.")
     expect(page).to have_content("Sign Out")
 
