@@ -1,6 +1,7 @@
 <h1> <%= @drink.name %> </h1>
 <div>
-  Created by: <%= @drink.user.username %>
+  Created by: <%= image_tag(@drink.user.avatar.url(:thumb)) %>
+              <%= @drink.user.username %>
 </div>
 <div>
   <% if @drink.alcoholic? %>
@@ -56,10 +57,14 @@
 </div>
 
 <h1><%= @drink.name %> Reviews</h1>
-
+<h2>Average Rating: <%= @rating_average %> </h2>
 <% if @reviews %>
   <% @reviews.each do |review| %>
     <div>
+      <% if signed_in? && current_user.role == "admin" %>
+        <%= button_to "Delete Review", admin_review_path(review),
+            method: :delete, title: "Destroy_Review_#{review.id}" %>
+        <% end %>
       <%= review.created_at %>
       <%= review.user.username %>
       Rating: <%= review.rating %>

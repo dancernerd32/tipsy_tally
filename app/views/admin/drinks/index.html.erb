@@ -1,0 +1,11 @@
+<ul>
+  <% @drinks.each do |drink| %>
+    <li>
+      <%= link_to drink.name, drink_path(drink) %>
+      <%=
+          button_to "Delete Drink", admin_drink_path(drink),
+          method: :delete, title: "Destroy " + drink.name
+        %>
+    </li>
+  <% end %>
+</ul>
