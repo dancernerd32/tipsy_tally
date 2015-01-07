@@ -29,13 +29,12 @@ feature "User views a drink's details", %{
       expect(page).to have_content liquor.name
     end
 
-    ############### CHANGE TO USERNAME #######################
     expect(page).to have_content drink.user.username
     expect(page).not_to have_content "Edit Drink"
   end
 
   scenario "Visitor views details for a non-alcoholic drink" do
-    drink = FactoryGirl.create(:non_alcohol_drink)
+    drink = FactoryGirl.create(:drink)
 
     visit drink_path(drink)
 

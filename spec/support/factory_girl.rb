@@ -19,10 +19,18 @@ FactoryGirl.define do
     end
   end
 
-  factory :non_alcohol_drink, class: Drink do
+  factory :drink, class: Drink do
     sequence(:name) { |n| "Awesome drink #{n}" }
     description "This is a really good drink"
     alcoholic false
+    user
+  end
+
+  factory :review, class: Review do
+    rating 3
+    title "Great Drink"
+    body "Got so trashed on this drink last night"
+    drink
     user
   end
 

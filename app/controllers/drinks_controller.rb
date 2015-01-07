@@ -19,6 +19,7 @@ class DrinksController < ApplicationController
 
   def show
     @drink = Drink.find(params[:id])
+    @review = @drink.reviews.build
   end
 
   def edit
@@ -49,6 +50,14 @@ class DrinksController < ApplicationController
       end
       render "edit"
     end
+  end
+
+  def destroy
+    flash[:notice] = "Successfully deleted drink"
+    redirect_to drinks_path
+  end
+
+  def index
   end
 
   private
