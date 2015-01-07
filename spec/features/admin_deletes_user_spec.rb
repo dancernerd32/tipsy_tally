@@ -26,6 +26,7 @@ feature "Delete user", %{
 
     scenario "Admin successfully deletes a user" do
       user = FactoryGirl.create(:user, username: "Alex")
+      user1 = FactoryGirl.create(:user)
 
       visit admin_users_path
 
@@ -33,6 +34,7 @@ feature "Delete user", %{
 
       expect(page).to have_content "Successfully deleted #{user.username}"
       expect("#users").not_to have_content user.username
+      expect(page).to have_content user1.username
     end
 
     scenario "Admin tries to delete himself" do

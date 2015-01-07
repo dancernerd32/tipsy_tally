@@ -12,11 +12,8 @@ feature "User views a drink's details", %{
   # [X] If the drink has alcohol,
   #    I should see the types of alcohol used to make the drink
   # [X] If the drink is non-alcoholic, I don't see the liquors section
-  # [] If there are at least 2 reviews,
-  #    I should see the two most helpful reviews on the drink page
-  # [] I should see the average rating for the drink
-  # [] There should be a link to all reviews of that drink
-  # [] I should see the username and avatar of the person who added the drink
+  # [X] I should see the average rating for the drink
+  # [X] I should see the username and avatar of the person who added the drink
 
   scenario "Visitor views details of an alcoholic drink" do
     drink = FactoryGirl.create(:alcohol_drink)
@@ -31,6 +28,7 @@ feature "User views a drink's details", %{
 
     expect(page).to have_content drink.user.username
     expect(page).not_to have_content "Edit Drink"
+    expect(find('img')['src']).to have_content "default.jpg"
   end
 
   scenario "Visitor views details for a non-alcoholic drink" do
@@ -44,6 +42,13 @@ feature "User views a drink's details", %{
     expect(page).not_to have_content "Edit Drink"
   end
 
-  scenario "User views another user's drink"
+  scenario "Visitor views average rating for a drink" do
+    drink = FactoryGirl.create(:drink)
+    review = FactoryGirl.create(:review, rating: 1, drink: drink)
+    review = FactoryGirl.create(:review, rating: 4, drink: drink)
 
+    visit drink_path(drink)
+
+    expect(page).to have_content("2.5")
+  end
 end
