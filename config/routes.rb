@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
   root "drinks#index"
   devise_for :users, except: [:destroy]
+  resources :users, only: [:show]
 
   resources :drinks do
     resources :reviews, only: [:create, :index]
+  end
+
+  namespace :admin do
+    get '/', :to => 'dashboards#show'
+    resources :users, only: [:index, :show, :destroy]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
