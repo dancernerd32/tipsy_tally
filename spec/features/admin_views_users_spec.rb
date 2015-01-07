@@ -5,7 +5,7 @@ feature "Admin views a list of users", %{
   I want to view a list of users
   So I know who is on my site
   } do
-  #
+    
   # Acceptance Criteria:
   # [X] I must be logged in, and an admin to view the list of users
   # [X] Every user is listed alphabetically by username
