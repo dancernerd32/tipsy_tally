@@ -16,6 +16,20 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def edit
+    #binding.pry
+    @drink = Drink.find(params[:drink_id])
+    @review = Review.find(params[:id])
+  end
+
+  def update
+    review = Review.find(params[:id])
+    if review.update(review_params)
+      flash[:notice] = "Successfully updated review"
+      redirect_to drink_path(review.drink)
+    end
+  end
+
   private
 
   def review_params

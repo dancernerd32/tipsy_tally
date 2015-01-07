@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   devise_for :users, except: [:destroy]
 
   resources :drinks do
-    resources :reviews, only: [:create, :index]
+    resources :reviews, only: [:create, :index, :edit, :update]
   end
+
+  # resources :reviews, only: [:edit]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -60,11 +60,12 @@
 <% if @reviews %>
   <% @reviews.each do |review| %>
     <div>
-      <%= review.created_at %>
-      <%= review.user.username %>
-      Rating: <%= review.rating %>
+      <p><%= review.created_at %></p>
+      <p><%= review.user.username %></p>
+      <p>Rating: <%= review.rating %></p>
       <h5><%= review.title %></h5>
-      <p><%= review.body %>
+      <p><%= review.body %></p>
+      <p><%= link_to("Edit review", edit_drink_review_path(@drink, review)) %> </p>
     </div>
   <% end %>
 <% end %>
