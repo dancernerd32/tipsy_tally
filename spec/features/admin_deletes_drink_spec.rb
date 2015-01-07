@@ -13,7 +13,7 @@ feature "Delete user", %{
 
   context "Admin is signed in" do
     before(:each) do
-      @admin1 = FactoryGirl.create(:user, role: "Admin")
+      @admin1 = FactoryGirl.create(:user, role: "admin")
       visit root_path
 
       click_on "Sign In"

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     get '/', :to => 'dashboards#show'
     resources :users, only: [:index, :show, :destroy]
     resources :drinks, only: [:index, :show, :destroy]
+    resources :reviews, only: [:destroy]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
