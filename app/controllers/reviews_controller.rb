@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
       @review.user_id = current_user.id
       if @review.save
         flash[:notice] = "Successfully added your review"
-        redirect_to drink_reviews_path(@drink)
+        redirect_to drink_path(@drink)
       else
         render "drinks/show"
       end
@@ -14,11 +14,6 @@ class ReviewsController < ApplicationController
       flash[:notice] = "You must sign in or sign up to leave a review"
       render "drinks/show"
     end
-  end
-
-  def index
-    @drink = Drink.find(params[:drink_id])
-    @reviews = @drink.reviews
   end
 
   private
