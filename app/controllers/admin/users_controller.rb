@@ -16,8 +16,7 @@ module Admin
       user = User.find(params[:id])
       if user.destroy
         flash[:notice] = "Successfully deleted #{user.username}"
-        @users = User.all.order(username: :asc)
-        render "index"
+        redirect_to admin_users_path
       elsif !user.destroy
         flash[:error] = "Can't delete that user at this time"
         @users = User.all.order(username: :asc)
