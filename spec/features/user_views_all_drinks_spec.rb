@@ -1,5 +1,4 @@
-require 'rails_helper'
-
+require "rails_helper"
 
 feature "visitor views drinks", %{
   As a visitor,
