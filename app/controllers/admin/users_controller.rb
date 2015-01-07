@@ -19,6 +19,10 @@ module Admin
         flash[:notice] = "Successfully deleted #{user.username}"
         @users = User.all.order(username: :asc)
         render "index"
+      elsif !user.destroy
+        flash[:error] = "Can't delete that user at this time"
+        @users = User.all.order(username: :asc)
+        render "index"
       end
     end
 

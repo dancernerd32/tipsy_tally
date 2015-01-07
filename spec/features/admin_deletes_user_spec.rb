@@ -7,10 +7,10 @@ feature "Delete user", %{
 } do
   # Acceptance Criteria:
   #
-  # [] I must be signed in as an admin to remove a user
+  # [X] I must be signed in as an admin to remove a user
   # [] When I delete a user, a mailer must notify the user their account has
   #    been removed and why
-  # [] I must have a way of deleting a user
+  # [X] I must have a way of deleting a user
 
   context "Admin is signed in" do
       before(:each) do
@@ -23,6 +23,7 @@ feature "Delete user", %{
         fill_in "Password", with: @admin1.password
         click_on "Log in"
       end
+
     scenario "Admin successfully deletes a user" do
       user = FactoryGirl.create(:user, username: "Alex")
 
@@ -32,6 +33,12 @@ feature "Delete user", %{
 
       expect(page).to have_content "Successfully deleted #{user.username}"
       expect("#users").not_to have_content user.username
+    end
+
+    scenario "Admin tries to delete himself" do
+      visit admin_users_path
+
+      expect(page).not_to have_selector(".button_to")
     end
   end
 end
