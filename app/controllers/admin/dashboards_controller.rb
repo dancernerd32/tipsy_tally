@@ -1,6 +1,5 @@
 module Admin
   class DashboardsController < ApplicationController
-
     before_filter :authenticate_user!
     before_filter do
       if current_user.role.downcase != "admin"

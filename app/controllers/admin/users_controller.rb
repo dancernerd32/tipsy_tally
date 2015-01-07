@@ -1,6 +1,5 @@
 module Admin
   class UsersController < ApplicationController
-
     before_filter :authenticate_user!
     before_filter do
       if current_user.role.downcase != "admin"
@@ -25,6 +24,5 @@ module Admin
         render "index"
       end
     end
-
   end
 end

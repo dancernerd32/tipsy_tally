@@ -13,16 +13,16 @@ feature "Delete user", %{
   # [X] I must have a way of deleting a user
 
   context "Admin is signed in" do
-      before(:each) do
-        @admin1 = FactoryGirl.create(:user, role: "admin", username: "Xavier")
-        visit root_path
+    before(:each) do
+      @admin1 = FactoryGirl.create(:user, role: "admin", username: "Xavier")
+      visit root_path
 
-        click_on "Sign In"
+      click_on "Sign In"
 
-        fill_in "Login", with: @admin1.email
-        fill_in "Password", with: @admin1.password
-        click_on "Log in"
-      end
+      fill_in "Login", with: @admin1.email
+      fill_in "Password", with: @admin1.password
+      click_on "Log in"
+    end
 
     scenario "Admin successfully deletes a user" do
       user = FactoryGirl.create(:user, username: "Alex")

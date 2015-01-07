@@ -14,20 +14,22 @@ feature "Admin views a list of users", %{
 
   context "Admin is signed in" do
     before(:each) do
-    @admin1 = FactoryGirl.create(:user, role: "admin")
+      @admin1 = FactoryGirl.create(:user, role: "admin")
+
       visit root_path
 
       click_on "Sign In"
 
       fill_in "Login", with: @admin1.email
       fill_in "Password", with: @admin1.password
+
       click_on "Log in"
     end
 
     scenario "Admin follows paths to view a user's profile" do
       user1 = FactoryGirl.create(:user, username: "Cori")
-      user2 = FactoryGirl.create(:user, username: "Mike")
-      user3 = FactoryGirl.create(:user, username: "Lauren")
+      FactoryGirl.create(:user, username: "Mike")
+      FactoryGirl.create(:user, username: "Lauren")
 
       visit root_path
 
@@ -53,11 +55,11 @@ feature "Admin views a list of users", %{
 
       visit admin_path
 
-      expect(page).to have_content "You need to sign in or sign up before continuing"
+      expect(page).to have_content("You need to sign in")
 
       visit admin_users_path
 
-      expect(page).to have_content "You need to sign in or sign up before continuing"
+      expect(page).to have_content "You need to sign in"
     end
   end
 

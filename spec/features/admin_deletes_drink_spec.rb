@@ -32,6 +32,7 @@ feature "Delete user", %{
       click_button ("Destroy " + drink2.name)
 
       expect(page).to have_content "Successfully deleted #{drink2.name}"
+      expect(page).to have_content drink1.name
       expect("#drinks").not_to have_content drink2.name
     end
   end

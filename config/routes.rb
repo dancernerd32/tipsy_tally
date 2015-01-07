@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get '/', :to => 'dashboards#show'
+    get "/", to: "dashboards#show"
     resources :users, only: [:index, :show, :destroy]
     resources :drinks, only: [:index, :show, :destroy]
     resources :reviews, only: [:destroy]

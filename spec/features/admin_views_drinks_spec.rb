@@ -41,7 +41,9 @@ feature "Admin views drinks", %{
     scenario "Visitor tries to view admin drinks pages" do
       visit admin_drinks_path
 
-      expect(page).to have_content "You need to sign in or sign up before continuing"
+      expect(page).to have_content(
+        "You need to sign in or sign up before continuing"
+      )
     end
   end
 
