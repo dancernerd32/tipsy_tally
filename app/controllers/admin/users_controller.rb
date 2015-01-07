@@ -13,5 +13,14 @@ module Admin
       @users = User.all.order(username: :asc)
     end
 
+    def destroy
+      user = User.find(params[:id])
+      if user.destroy
+        flash[:notice] = "Successfully deleted #{user.username}"
+        @users = User.all.order(username: :asc)
+        render "index"
+      end
+    end
+
   end
 end

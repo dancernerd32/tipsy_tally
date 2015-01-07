@@ -36,7 +36,7 @@ feature "Admin views a list of users", %{
       click_on "View Users"
 
       expect(find("ul#users li:nth-child(1)")).to have_content "Cori"
-      expect(find("ul#users li:nth-child(4)")).to have_content "username1"
+      expect(find("ul#users li:nth-child(4)")).to have_content "username"
 
       click_on user1.username
 
