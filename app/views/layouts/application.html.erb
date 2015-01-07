@@ -18,17 +18,18 @@
       <ul class="right">
         <li> <%= link_to 'New Drink', new_drink_path %> </li>
         <%- if current_user -%>
+          <li class=active>
+            <% if current_user.role == "admin" %>
+            <%= link_to "Admin Panel", admin_path %>
+            <% end %>
+          </li>
           <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
           <li><%= image_tag(current_user.avatar.url(:thumb)) %> </li>
-
-          <% if current_user.role == "Admin" %>
-            <%= link_to "Admin Panel", admin_path %>
-          <% end %>
 
         <%- else -%>
           <li><%= link_to 'Sign Up', new_user_registration_path %></li>
           <li><%= link_to 'Sign In', new_user_session_path %></li>
-          <%- end -%>
+        <%- end -%>
       </ul>
     </section>
   </nav>
