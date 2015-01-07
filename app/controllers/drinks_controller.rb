@@ -53,12 +53,19 @@ class DrinksController < ApplicationController
     end
   end
 
-  def destroy
-    flash[:notice] = "Successfully deleted drink"
-    redirect_to drinks_path
+  def index
+    @drinks = Drink.all
   end
 
-  def index
+  def destroy
+    drink = Drink.find(params[:id])
+    if drink.destroy
+      flash[:notice] = "Successfully deleted drink"
+      redirect_to drinks_path
+    else
+      flash[:error] = "Unable to delete. Contact Support"
+      render "show"
+    end
   end
 
   private
