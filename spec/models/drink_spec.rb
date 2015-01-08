@@ -4,13 +4,12 @@ describe Drink do
   it { should have_many(:reviews).dependent(:destroy) }
   it { should have_many(:drink_liquors).dependent(:destroy) }
 
-  context 'searching' do
-  	before(:each) do
-  		@rumandcoke = FactoryGirl.create(:drink, name: "Rum and Coke")
-  		@ginandtonic = FactoryGirl.create(:drink, name: "Gin and Tonic")
-  		@sangria = FactoryGirl.create(:drink, name: "Sangria")
-  	end
-  
+	context "searching" do
+		before(:each) do
+			@rumandcoke = FactoryGirl.create(:drink, name: "Rum and Coke")
+			@ginandtonic = FactoryGirl.create(:drink, name: "Gin and Tonic")
+			@sangria = FactoryGirl.create(:drink, name: "Sangria")
+		end
 
   	it "searches by drink name" do
   		results = Drink.search("Gin")
