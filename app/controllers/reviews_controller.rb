@@ -18,7 +18,7 @@ class ReviewsController < ApplicationController
 
   def upvote
     authenticate_user!
-    @vote = Vote.find_or_initialize_by(user_id: params[:user_id], review_id: params[:review_id])
+    @vote = Vote.find_or_initialize_by(user_id: current_user.id, review_id: params[:review_id])
     if @vote.score == 1
       vote.score = 0
     else
@@ -31,7 +31,17 @@ class ReviewsController < ApplicationController
   end
 
   def downvote
-
+    authenticate_user!
+    @vote = Vote.find_or_initialize_by(user_id: current_user.id, review_id: params[:review_id])
+    if @vote.score == -1
+      vote.score = 0
+    else
+      @vote.score = -1
+    end
+    if @vote.save
+      flash[:notice] = "Voted Successfully"
+      redirect_to drink_path(params[:drink_id])
+    end
   end
 
   private

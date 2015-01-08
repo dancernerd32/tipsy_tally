@@ -33,8 +33,14 @@ feature "User votes on a reivew", %{
 
       click_on "+1"
 
-      expect(page).to have_content "1"
+      expect(page).to have_content "Score: 1"
+    end
 
+    scenario "User clicks the downvote button" do
+
+      click_on "-1"
+
+      expect(page).to have_content "Score: -1"
     end
   end
 end

@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20150108025600) do
   create_table "votes", force: :cascade do |t|
     t.integer "user_id"
     t.integer "review_id"
-    t.integer "score"
+    t.integer "score",     default: 0, null: false
   end
 
 end
