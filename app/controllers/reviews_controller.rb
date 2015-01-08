@@ -18,7 +18,7 @@ class ReviewsController < ApplicationController
 
   def upvote
     authenticate_user!
-    @vote = Vote.find_or_initialize_by(
+    @vote = Vote.find_or_create_by(
       user_id: current_user.id,
       review_id: params[:review_id]
       )
@@ -35,7 +35,7 @@ class ReviewsController < ApplicationController
 
   def downvote
     authenticate_user!
-    @vote = Vote.find_or_initialize_by(
+    @vote = Vote.find_or_create_by(
       user_id: current_user.id,
       review_id: params[:review_id]
       )
