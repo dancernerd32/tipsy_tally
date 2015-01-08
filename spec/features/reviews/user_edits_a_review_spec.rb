@@ -8,13 +8,11 @@ feature "user edits a review", %{
   # Acceptance Critieria:
   # [] I must be logged in
   # [] I can only edit my own review
-  # [] I can change the review body
-  # [] I can change the review title
-  # [] I can change the rating
+  # [x] I can change the review body
+  # [x] I can change the review title
+  # [x] I can change the rating
   # [] If I successfully update my comment I am a shown a success message
  	# 	 and taken to the drink's show page
- 	# [] If I provide invalid information I am shown an error message and the 
-	# 	 page is refreshed
 
 	context "authenticated user" do
 	  before(:each) do
@@ -29,21 +27,45 @@ feature "user edits a review", %{
 	    click_on "Log in"
 	  end
 
-	  scenario "User updates a review successfully" do
+	  scenario "User updates a review successfully with title & body" do
 
-	  	review = FactoryGirl.create(:review, user_id: @user1.id)
+	  	review = FactoryGirl.create(:review, user: @user1)
 	  	drink = Drink.find(review.drink_id)
+
 	  	visit drink_path(drink)
+
 	  	click_on "Edit review"
+
 	  	choose "review_rating_1"
 	  	fill_in "Title", with: "New Title"
-	  	fill_in "Body", with: "New Body"	  	 
-	  	click_on "Update"
+	  	fill_in "Body", with: "New Body"
+
+			click_on "Update"
+
 	  	expect(page).to have_content "New Title"
 	  	expect(page).to have_content "New Body"
 	  	expect(page).to have_content "1"
 	  	expect(page).not_to have_content review.title
+			expect(page).to have_content "Review updated successfully!"
+			expect(page).to have_content drink.description
 
 	  end
+
+		scenario "User tries to update another user's review" do
+
+			review = FactoryGirl.create(:review)
+			drink = Drink.find(review.drink_id)
+
+			visit drink_path(drink)
+
+			expect(page).not_to have_link("Edit review",
+			href: edit_drink_review_path(drink, review))
+
+			visit edit_drink_review_path(drink, review)
+
+			expect(page).to have_content "You cannot edit someone else's review"
+			expect(page).to have_content drink.description
+
+		end
 	end
 end

@@ -17,15 +17,19 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    #binding.pry
     @drink = Drink.find(params[:drink_id])
     @review = Review.find(params[:id])
+
+    if @review.user != current_user
+      flash[:error] = "You cannot edit someone else's review"
+      redirect_to drink_path(@drink)
+    end
   end
 
   def update
     review = Review.find(params[:id])
     if review.update(review_params)
-      flash[:notice] = "Successfully updated review"
+      flash[:notice] = "Review updated successfully!"
       redirect_to drink_path(review.drink)
     end
   end
