@@ -88,6 +88,10 @@ feature "User votes on a reivew", %{
       click_link "Sign Out"
     end
 
+    visit drink_path(review.drink)
+
+    expect(page).to have_content("Score: 3")
+
     downvoters.each do |user|
       visit new_user_session_path
 
