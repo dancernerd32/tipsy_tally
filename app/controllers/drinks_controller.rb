@@ -22,6 +22,7 @@ class DrinksController < ApplicationController
     @reviews = @drink.reviews
     @review = Review.new
     @review.drink = @drink
+    @rating_average = @drink.reviews.average("rating")
   end
 
   def edit
