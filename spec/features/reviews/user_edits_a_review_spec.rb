@@ -4,16 +4,16 @@ feature "user edits a review", %{
 	As a user,
 	I want to update my review
 	So that I can edit an error, add a review body(or title), or change my opinion
-	} do
+} do
 
-		# Acceptance Critieria:
-	  # [x] I must be logged in
-	  # [x] I can only edit my own review
-	  # [x] I can change the review body
-		# [x] I can change the review title
-		# [x] I can change the rating
-		# [x] If I successfully update my comment I am a shown a success message
-		# 	 and taken to the drink's show page
+	# Acceptance Critieria:
+  # [x] I must be logged in
+  # [x] I can only edit my own review
+  # [x] I can change the review body
+	# [x] I can change the review title
+	# [x] I can change the rating
+	# [x] If I successfully update my comment I am a shown a success message
+	# 	 and taken to the drink's show page
 
 	context "authenticated user" do
 		before(:each) do
@@ -57,11 +57,15 @@ feature "user edits a review", %{
 
 			review = FactoryGirl.create(:review)
 			drink = Drink.find(review.drink_id)
+			review1 = FactoryGirl.create(:review, user: @user1, drink: drink)
 
 			visit drink_path(drink)
 
 			expect(page).not_to have_link(
 			"Edit review", href: edit_drink_review_path(drink, review)
+			)
+			expect(page).to have_link(
+			"Edit review", href: edit_drink_review_path(drink, review1)
 			)
 
 			visit edit_drink_review_path(drink, review)
