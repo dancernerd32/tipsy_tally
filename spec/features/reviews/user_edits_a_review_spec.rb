@@ -15,21 +15,21 @@ feature "user edits a review", %{
  	# 	 and taken to the drink's show page
 
 	context "authenticated user" do
-	  before(:each) do
-	    @user1 = FactoryGirl.create(:user)
+		before(:each) do
+			@user1 = FactoryGirl.create(:user)
 
-	    visit root_path
+			visit root_path
 
-	    click_on "Sign In"
+			click_on "Sign In"
 
-	    fill_in "Login", with: @user1.email
-	    fill_in "Password", with: @user1.password
-	    click_on "Log in"
-	  end
+			fill_in "Login", with: @user1.email
+			fill_in "Password", with: @user1.password
+			click_on "Log in"
+		end
 
-	  scenario "User updates a review successfully with title & body" do
+		scenario "User updates a review successfully with title & body" do
 
-	  	review = FactoryGirl.create(:review, user: @user1)
+			review = FactoryGirl.create(:review, user: @user1)
 	  	drink = Drink.find(review.drink_id)
 
 	  	visit drink_path(drink)
@@ -58,8 +58,9 @@ feature "user edits a review", %{
 
 			visit drink_path(drink)
 
-			expect(page).not_to have_link("Edit review",
-			href: edit_drink_review_path(drink, review))
+			expect(page).not_to have_link(
+			"Edit review", href: edit_drink_review_path(drink, review)
+			)
 
 			visit edit_drink_review_path(drink, review)
 
@@ -76,8 +77,9 @@ feature "user edits a review", %{
 
 		visit drink_path(drink)
 
-		expect(page).not_to have_link("Edit review",
-		href: edit_drink_review_path(drink, review))
+		expect(page).not_to have_link(
+		"Edit review", href: edit_drink_review_path(drink, review)
+		)
 
 		visit edit_drink_review_path(drink, review)
 
