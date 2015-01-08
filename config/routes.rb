@@ -4,8 +4,13 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
 
   resources :drinks do
-    resources :reviews, only: [:create, :index]
+    resources :reviews, only: [:create, :index] do
+      post "upvote"
+      post "downvote"
+    end
   end
+
+  resources :votes, only: [:create]
 
   namespace :admin do
     get "/", to: "dashboards#show"
