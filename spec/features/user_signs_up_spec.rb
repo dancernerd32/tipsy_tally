@@ -24,7 +24,7 @@ feature "user registers", %{
 
     click_button "Sign up"
 
-    expect(find("img")["src"]).to have_content "default.jpg"
+    expect(page).to have_css("img[src*='default.jpg']")
     expect(page).to have_content("Welcome! You have signed up successfully.")
     expect(page).to have_content("Sign Out")
   end
@@ -40,8 +40,7 @@ feature "user registers", %{
     attach_file("user[avatar]", Rails.root + "spec/fixtures/default_av.jpg")
     click_button "Sign up"
 
-    # within[id]
-    expect(find("img")["src"]).to have_content "default_av.jpg"
+    expect(page).to have_css("img[src*='default_av.jpg']")
     expect(page).to have_content("Welcome! You have signed up successfully.")
     expect(page).to have_content("Sign Out")
 
