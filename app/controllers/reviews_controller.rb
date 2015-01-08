@@ -8,9 +8,11 @@ class ReviewsController < ApplicationController
         flash[:notice] = "Successfully added your review"
         redirect_to drink_path(@drink)
       else
+        @reviews = Review.where(drink_id: @drink.id).page params[:page]
         render "drinks/show"
       end
     else
+      @reviews = Review.where(drink_id: @drink.id).page params[:page]
       flash[:notice] = "You must sign in or sign up to leave a review"
       render "drinks/show"
     end
