@@ -18,7 +18,7 @@ feature "visitor views drinks", %{
 
     visit drinks_path
     click_on "5"
-    
+
     expect(page).to have_link("test")
 
     click_on "test"
