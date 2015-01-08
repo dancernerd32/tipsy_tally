@@ -5,7 +5,7 @@ feature "user edits a review", %{
 	I want to update my review
 	So that I can edit an error, add a review body(or title), or change my opinion
 	} do
-		
+
 		# Acceptance Critieria:
 	  # [x] I must be logged in
 	  # [x] I can only edit my own review
