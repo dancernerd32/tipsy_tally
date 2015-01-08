@@ -4,7 +4,6 @@ feature "User searches for a drink", %{
 	As anyone
 	I want to search for a specific drink
 	So I can see more information
-
 	} do
 
 	# Acceptance Criteria
