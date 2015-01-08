@@ -14,7 +14,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'carrierwave'
 
-# Added for carrierwave thumbnails	
+# Added for carrierwave thumbnails
 gem 'mini_magick'
 
 # Use jquery as the JavaScript library

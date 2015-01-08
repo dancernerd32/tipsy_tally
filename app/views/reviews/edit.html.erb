@@ -1,0 +1,35 @@
+<div>
+
+  <%= form_for [@drink, @review] do |f| %>
+
+
+    <div>
+      <%= f.label :rating %>
+      <%= f.radio_button(:rating, 1) %>
+      <%= f.label :rating, 1 %>
+      <%= f.radio_button(:rating, 2) %>
+      <%= f.label :rating, 2 %>
+      <%= f.radio_button(:rating, 3) %>
+      <%= f.label :rating, 3 %>
+      <%= f.radio_button(:rating, 4) %>
+      <%= f.label :rating, 4 %>
+      <%= f.radio_button(:rating, 5) %>
+      <%= f.label :rating, 5 %>
+    </div>
+
+    <div>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+
+    <div>
+      <%= f.label :body %>
+      <%= f.text_field :body %>
+    </div>
+
+    <div>
+      <%= f.submit "Update" %>
+    </div>
+ 
+  <% end %>
+</div>

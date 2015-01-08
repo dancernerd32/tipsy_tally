@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
 
   resources :drinks do
-    resources :reviews, only: [:create, :index] do
+    resources :reviews, only: [:create, :index, :edit, :update] do
       post "upvote"
       post "downvote"
     end
