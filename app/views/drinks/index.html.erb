@@ -3,3 +3,5 @@
     <li><%= link_to drink.name, drink_path(drink) %></li>
   <% end %>
 </ul>
+
+<%= paginate @drinks %>
