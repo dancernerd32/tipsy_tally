@@ -85,6 +85,8 @@
       <% if current_user == review.user %>
         <p>
           <%= link_to("Edit review", edit_drink_review_path(@drink, review)) %>
+          <%= button_to "Delete Drink", drink_review_path(@drink, review),
+              method: :delete %>
         </p>
       <% end %>
     </div>
