@@ -14,6 +14,7 @@ feature "User votes on a reivew", %{
     # [X] I must be signed in to cast a vote
     # [X] If I click the down vote or up vote button a second time,
     #   I delete my vote.
+    # [] The correct amount of votes is displayed
 
   context "User is signed in" do
     before(:each) do
@@ -66,5 +67,43 @@ feature "User votes on a reivew", %{
     click_on "+1"
 
     expect(page).to have_content("sign up before continuing")
+  end
+
+  scenario "There are multiple votes on a review" do
+    upvoters = FactoryGirl.create_list(:user, 3)
+    downvoters = FactoryGirl.create_list(:user, 2)
+    review = FactoryGirl.create(:review)
+
+    upvoters.each do |user|
+      visit new_user_session_path
+
+      fill_in "Login", with: user.username
+      fill_in "Password", with: user.password
+
+      click_button "Log in"
+
+      visit drink_path(review.drink)
+
+      click_on "+1"
+      click_link "Sign Out"
+    end
+
+    downvoters.each do |user|
+      visit new_user_session_path
+
+      fill_in "Login", with: user.username
+      fill_in "Password", with: user.password
+
+      click_button "Log in"
+
+      visit drink_path(review.drink)
+
+      click_on "-1"
+      click_link "Sign Out"
+    end
+
+    visit drink_path(review.drink)
+
+    expect(page).to have_content("Score: 1")
   end
 end
