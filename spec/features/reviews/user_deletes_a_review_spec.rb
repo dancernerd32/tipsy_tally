@@ -42,5 +42,15 @@ feature "User deletes a review", %{
 
     end
 
+    scenario "User tries to delete another user's review" do
+      review = FactoryGirl.create(:review)
+      drink = Drink.find(review.drink_id)
+
+      visit drink_path(drink)
+
+      expect(page).not_to have_button("Delete")
+
+    end
+
   end
 end
