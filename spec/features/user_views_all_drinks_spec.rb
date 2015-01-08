@@ -12,7 +12,7 @@ feature "visitor views drinks", %{
     # [X] If I click a drink, it should bring me to the drinks details page
 
   scenario "vistor selects a drink from within a paginated index view" do
-    
+
     FactoryGirl.create_list(:drink, 50)
 
     visit drinks_path
