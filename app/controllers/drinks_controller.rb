@@ -56,7 +56,7 @@ class DrinksController < ApplicationController
   end
 
   def index
-    @drinks = Drink.all.page params[:page]
+    @drinks = Drink.search(params[:search]).page params[:page]
   end
 
   def destroy
