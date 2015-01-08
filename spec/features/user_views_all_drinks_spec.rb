@@ -14,7 +14,7 @@ feature "visitor views drinks", %{
   scenario "vistor selects a drink from within a paginated index view" do
 
     FactoryGirl.create_list(:drink, 49)
-    expected = FactoryGirl.create(:drink, name:"test")
+    FactoryGirl.create(:drink, name:"test")
 
     visit drinks_path
     click_on "5"
