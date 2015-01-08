@@ -36,6 +36,14 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def destroy
+    review = Review.find(params[:id])
+    if review.destroy
+      flash[:notice] = "Successfully deleted review"
+      redirect_to drink_path(review.drink)
+    end
+  end
+
   def upvote
     authenticate_user!
     review = Review.find(params[:review_id])
