@@ -56,7 +56,7 @@ class DrinksController < ApplicationController
   end
 
   def index
-    @drinks = Drink.all
+    @drinks = Drink.search(params[:search])
   end
 
   def destroy
