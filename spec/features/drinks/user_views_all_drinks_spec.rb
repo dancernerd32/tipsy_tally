@@ -8,20 +8,20 @@ feature "visitor views drinks", %{
 
     # Acceptance Criteria:
     # [X] Vistor can see all the drinks listed on the homepage
+    # [X] Drinks are listed ten at a time and are paginated
     # [X] If I click a drink, it should bring me to the drinks details page
 
-    scenario "vistor views the drinks and click on one" do
-      drink = FactoryGirl.create(:drink, description: "This drink is awesome!")
-      drink1 = FactoryGirl.create(:drink)
+  scenario "vistor selects a drink from within a paginated index view" do
 
-      visit drinks_path
+    FactoryGirl.create_list(:drink, 49)
+    FactoryGirl.create(:drink, name:"test")
 
-      expect(page).to have_content(drink.name)
-      expect(page).to have_content(drink1.name)
+    visit drinks_path
+    click_on "5"
 
-      click_on drink.name
+    expect(page).to have_link("test")
 
-      expect(page).to have_content(drink.liquors.first)
-      expect(page).to have_content("This drink is awesome!")
-    end
+    click_on "test"
+    expect(page).to have_content("This is a really good drink")
   end
+end

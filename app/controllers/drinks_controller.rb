@@ -19,7 +19,7 @@ class DrinksController < ApplicationController
 
   def show
     @drink = Drink.find(params[:id])
-    @reviews = @drink.reviews
+    @reviews = @drink.reviews.page params[:page]
     @review = Review.new
     @review.drink = @drink
     @rating_average = @drink.reviews.average("rating")
@@ -56,7 +56,7 @@ class DrinksController < ApplicationController
   end
 
   def index
-    @drinks = Drink.search(params[:search])
+    @drinks = Drink.search(params[:search]).page params[:page]
   end
 
   def destroy

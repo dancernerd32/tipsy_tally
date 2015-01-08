@@ -24,7 +24,7 @@ class Drink < ActiveRecord::Base
 
   def self.search(search)
     if !search.nil? && !search.blank?
-      Drink.where("name = ?", search)
+      Drink.where("name LIKE ?", "%#{search}%")
     else
       Drink.all
     end
