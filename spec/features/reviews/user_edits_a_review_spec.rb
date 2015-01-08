@@ -68,4 +68,21 @@ feature "user edits a review", %{
 
 		end
 	end
+
+	scenario "unauthenticated user tries to update a review" do
+
+		review = FactoryGirl.create(:review)
+		drink = Drink.find(review.drink_id)
+
+		visit drink_path(drink)
+
+		expect(page).not_to have_link("Edit review",
+		href: edit_drink_review_path(drink, review))
+
+		visit edit_drink_review_path(drink, review)
+
+		expect(page).to have_content "You must be signed in to do that"
+		expect(page).to have_content drink.description
+	end
+
 end

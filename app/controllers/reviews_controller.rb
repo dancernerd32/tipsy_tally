@@ -19,8 +19,10 @@ class ReviewsController < ApplicationController
   def edit
     @drink = Drink.find(params[:drink_id])
     @review = Review.find(params[:id])
-
-    if @review.user != current_user
+    if !signed_in?
+      flash[:error] = "You must be signed in to do that"
+      redirect_to drink_path(@drink)
+    elsif @review.user != current_user
       flash[:error] = "You cannot edit someone else's review"
       redirect_to drink_path(@drink)
     end
