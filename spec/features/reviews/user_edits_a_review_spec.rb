@@ -1,18 +1,19 @@
 require "rails_helper"
+
 feature "user edits a review", %{
 	As a user,
 	I want to update my review
 	So that I can edit an error, add a review body(or title), or change my opinion
-  } do
-
-  # Acceptance Critieria:
-  # [x] I must be logged in
-  # [x] I can only edit my own review
-  # [x] I can change the review body
-  # [x] I can change the review title
-  # [x] I can change the rating
-  # [x] If I successfully update my comment I am a shown a success message
- 	# 	 and taken to the drink's show page
+	} do
+		
+		# Acceptance Critieria:
+	  # [x] I must be logged in
+	  # [x] I can only edit my own review
+	  # [x] I can change the review body
+	  # [x] I can change the review title
+	  # [x] I can change the rating
+	  # [x] If I successfully update my comment I am a shown a success message
+	 	# 	 and taken to the drink's show page
 
 	context "authenticated user" do
 		before(:each) do
@@ -30,26 +31,26 @@ feature "user edits a review", %{
 		scenario "User updates a review successfully with title & body" do
 
 			review = FactoryGirl.create(:review, user: @user1)
-	  	drink = Drink.find(review.drink_id)
+			drink = Drink.find(review.drink_id)
 
-	  	visit drink_path(drink)
+			visit drink_path(drink)
 
-	  	click_on "Edit review"
+			click_on "Edit review"
 
-	  	choose "review_rating_1"
-	  	fill_in "Title", with: "New Title"
-	  	fill_in "Body", with: "New Body"
+			choose "review_rating_1"
+			fill_in "Title", with: "New Title"
+			fill_in "Body", with: "New Body"
 
 			click_on "Update"
 
-	  	expect(page).to have_content "New Title"
-	  	expect(page).to have_content "New Body"
-	  	expect(page).to have_content "1"
-	  	expect(page).not_to have_content review.title
+			expect(page).to have_content "New Title"
+			expect(page).to have_content "New Body"
+			expect(page).to have_content "1"
+			expect(page).not_to have_content review.title
 			expect(page).to have_content "Review updated successfully!"
 			expect(page).to have_content drink.description
 
-	  end
+		end
 
 		scenario "User tries to update another user's review" do
 
