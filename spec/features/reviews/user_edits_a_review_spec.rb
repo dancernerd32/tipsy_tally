@@ -10,10 +10,10 @@ feature "user edits a review", %{
 	  # [x] I must be logged in
 	  # [x] I can only edit my own review
 	  # [x] I can change the review body
-	  # [x] I can change the review title
-	  # [x] I can change the rating
-	  # [x] If I successfully update my comment I am a shown a success message
-	 	# 	 and taken to the drink's show page
+		# [x] I can change the review title
+		# [x] I can change the rating
+		# [x] If I successfully update my comment I am a shown a success message
+		# 	 and taken to the drink's show page
 
 	context "authenticated user" do
 		before(:each) do
@@ -26,10 +26,11 @@ feature "user edits a review", %{
 			fill_in "Login", with: @user1.email
 			fill_in "Password", with: @user1.password
 			click_on "Log in"
+
 		end
 
 		scenario "User updates a review successfully with title & body" do
-			
+
 			review = FactoryGirl.create(:review, user: @user1)
 			drink = Drink.find(review.drink_id)
 
@@ -87,5 +88,4 @@ feature "user edits a review", %{
 		expect(page).to have_content "You must be signed in to do that"
 		expect(page).to have_content drink.description
 	end
-
 end
