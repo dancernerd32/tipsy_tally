@@ -6,12 +6,12 @@ feature "user edits a review", %{
   } do
 
   # Acceptance Critieria:
-  # [] I must be logged in
-  # [] I can only edit my own review
+  # [x] I must be logged in
+  # [x] I can only edit my own review
   # [x] I can change the review body
   # [x] I can change the review title
   # [x] I can change the rating
-  # [] If I successfully update my comment I am a shown a success message
+  # [x] If I successfully update my comment I am a shown a success message
  	# 	 and taken to the drink's show page
 
 	context "authenticated user" do
