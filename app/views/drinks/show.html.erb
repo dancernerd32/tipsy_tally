@@ -67,6 +67,7 @@
         <% end %>
       <%= review.created_at %>
       <%= review.user.username %>
+      <%= button_to "+1", drink_review_upvote_path(@drink,review), method: :post %>
       Rating: <%= review.rating %>
       <h5><%= review.title %></h5>
       <p><%= review.body %>
