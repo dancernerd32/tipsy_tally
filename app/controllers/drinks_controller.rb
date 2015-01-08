@@ -19,8 +19,9 @@ class DrinksController < ApplicationController
 
   def show
     @drink = Drink.find(params[:id])
-    @reviews = Review.where(drink_id: @drink.id)
-    @review = @drink.reviews.build
+    @reviews = @drink.reviews
+    @review = Review.new
+    @review.drink = @drink
     @rating_average = @drink.reviews.average("rating")
   end
 
