@@ -11,17 +11,17 @@ feature "visitor views drinks", %{
     # [X] Drinks are listed ten at a time and are paginated
     # [X] If I click a drink, it should bring me to the drinks details page
 
-    scenario "vistor selects a drink from within a paginated index view" do
-      
-      drinks = FactoryGirl.create_list(:drink, 50)
-      
-      visit drinks_path
-      click_on "4"
+  scenario "vistor selects a drink from within a paginated index view" do
+    
+    FactoryGirl.create_list(:drink, 50)
 
-      expect(page).to have_link("Awesome drink 40")
-     
-      click_on "Awesome drink 40"
-      expect(page).to have_content("This is a really good drink")
+    visit drinks_path
+    click_on "4"
 
-    end
+    expect(page).to have_link("Awesome drink 40")
+
+    click_on "Awesome drink 40"
+    expect(page).to have_content("This is a really good drink")
+
   end
+end
