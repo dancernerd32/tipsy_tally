@@ -6,13 +6,13 @@ feature "User votes on a reivew", %{
   so that I can help others choose a drink
   } do
     # Acceptance Criteria:
-    # [] When I'm logged in, I can click a button on a review to up vote
-    # [] When I'm logged in, I can click a button on a review to down vote
-    # [] If I have already up voted, I can change my vote to a down vote.
-    # [] If I have already down voted, I can change my vote to an up vote
-    # [] I can not up vote or down vote the same review twice
-    # [] I must be signed in to cast a vote
-    # [] If I click the down vote or up vote button a second time,
+    # [X] When I'm logged in, I can click a button on a review to up vote
+    # [X] When I'm logged in, I can click a button on a review to down vote
+    # [X] If I have already up voted, I can change my vote to a down vote.
+    # [X] If I have already down voted, I can change my vote to an up vote
+    # [X] I can not up vote or down vote the same review twice
+    # [X] I must be signed in to cast a vote
+    # [X] If I click the down vote or up vote button a second time,
     #     I delete my vote.
 
   context "User is signed in" do
@@ -42,5 +42,29 @@ feature "User votes on a reivew", %{
 
       expect(page).to have_content "Score: -1"
     end
+
+    scenario "User resets their vote from up" do
+      click_on "+1"
+      click_on "+1"
+
+      expect(page).to have_content "Score: 0"
+    end
+
+    scenario "User resets their vote from down" do
+      click_on "-1"
+      click_on "-1"
+
+      expect(page).to have_content "Score: 0"
+    end
+  end
+
+  scenario "visitor attempts to vote" do
+    @review = FactoryGirl.create(:review)
+
+    visit drink_path(@review.drink)
+
+    click_on "+1"
+
+    expect(page).to have_content("sign up before continuing")
   end
 end

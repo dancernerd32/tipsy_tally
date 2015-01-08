@@ -20,7 +20,7 @@ class ReviewsController < ApplicationController
     authenticate_user!
     @vote = Vote.find_or_initialize_by(user_id: current_user.id, review_id: params[:review_id])
     if @vote.score == 1
-      vote.score = 0
+      @vote.score = 0
     else
       @vote.score = 1
     end
@@ -34,7 +34,7 @@ class ReviewsController < ApplicationController
     authenticate_user!
     @vote = Vote.find_or_initialize_by(user_id: current_user.id, review_id: params[:review_id])
     if @vote.score == -1
-      vote.score = 0
+      @vote.score = 0
     else
       @vote.score = -1
     end
