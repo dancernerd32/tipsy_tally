@@ -11,12 +11,12 @@ describe Drink do
 			@sangria = FactoryGirl.create(:drink, name: "Sangria")
 		end
 
-  	it "searches by drink name" do
-  		results = Drink.search("Gin")
+  it "searches by drink name" do
+    results = Drink.search("Gin")
 
-  		expect(results).to include(@ginandtonic)
-  		expect(results).to_not include(@sangria)
-  		expect(results).to_not include(@rumandcoke)
-  	end
+      expect(results).to include(@ginandtonic)
+      expect(results).to_not include(@sangria)
+      expect(results).to_not include(@rumandcoke)
+    end
 	end
 end
