@@ -16,7 +16,7 @@ class Review < ActiveRecord::Base
   validates :drink_id,
             presence: true
 
-  def upvote(user_id,review_id)
+  def upvote(user_id, review_id)
     vote = Vote.find_or_create_by(
     user_id: user_id,
     review_id: review_id
@@ -29,7 +29,7 @@ class Review < ActiveRecord::Base
     vote.save
   end
 
-  def downvote(user_id,review_id)
+  def downvote(user_id, review_id)
     vote = Vote.find_or_create_by(
     user_id: user_id,
     review_id: review_id
@@ -41,5 +41,4 @@ class Review < ActiveRecord::Base
     end
     vote.save
   end
-
 end
