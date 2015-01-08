@@ -29,7 +29,7 @@ feature "user edits a review", %{
 		end
 
 		scenario "User updates a review successfully with title & body" do
-
+			
 			review = FactoryGirl.create(:review, user: @user1)
 			drink = Drink.find(review.drink_id)
 
