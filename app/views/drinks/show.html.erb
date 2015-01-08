@@ -57,7 +57,9 @@
 </div>
 
 <h1><%= @drink.name %> Reviews</h1>
-<h2>Average Rating: <%= @rating_average %> </h2>
+<% if @rating_average %>
+  <h2>Average Rating: <%= @rating_average %> </h2>
+<% end %>
 <% if @reviews %>
   <% @reviews.each do |review| %>
     <div>
