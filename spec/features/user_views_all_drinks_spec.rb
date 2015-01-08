@@ -13,15 +13,15 @@ feature "visitor views drinks", %{
 
   scenario "vistor selects a drink from within a paginated index view" do
 
-    FactoryGirl.create_list(:drink, 50)
+    FactoryGirl.create_list(:drink, 49)
+    expected = FactoryGirl.create(:drink, name:"test")
 
     visit drinks_path
-    click_on "4"
+    click_on "5"
+    
+    expect(page).to have_link("test")
 
-    expect(page).to have_link("Awesome drink 40")
-
-    click_on "Awesome drink 40"
+    click_on "test"
     expect(page).to have_content("This is a really good drink")
-
   end
 end
