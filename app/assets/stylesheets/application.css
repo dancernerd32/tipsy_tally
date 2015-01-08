@@ -15,7 +15,39 @@
  *= require foundation_and_overrides
 
  */
-
-img.avatar{
+body{
+  font-family: 'Sorts Mill Goudy', serif;
+}
+h1{
+  font-family: "Sorts Mill Goudy", serif;
+}
+img#avatar{
   max-width: 45px;
+}
+img.home{
+  position:relative;
+}
+body{
+  background-color: #000000;
+}
+.slogan{
+  position:absolute;
+  right:5%;
+  top:70%;
+}
+.slogan h1{
+  color: white;
+}
+.top-bar{
+  background: #000000;
+}
+.top-bar-section li:not(.has-form) a:not(.button):hover{
+  background: #000000;
+  color: #5fcbff;
+}
+.top-bar-section li:not(.has-form) a:not(.button){
+  background: #000000;
+}
+.top-bar .name h1 a:hover{
+  color: #5fcbff;
 }
