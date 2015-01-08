@@ -7,10 +7,10 @@ feature "User searches for a drink", %{
 
   } do
 
-  # Acceptance Criteria
-  # [X] I must see results related to my search
-  # [X] The results must contain links to their drinks
-  # [X] I will only see drink results
+		# Acceptance Criteria
+		# [X] I must see results related to my search
+		# [X] The results must contain links to their drinks
+		# [X] I will only see drink results
 
 	scenario "User searches for a drink" do
 
