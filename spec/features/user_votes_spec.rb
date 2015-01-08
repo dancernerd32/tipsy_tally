@@ -14,7 +14,7 @@ feature "User votes on a reivew", %{
     # [X] I must be signed in to cast a vote
     # [X] If I click the down vote or up vote button a second time,
     #   I delete my vote.
-    # [] The correct amount of votes is displayed
+    # [X] The correct amount of votes is displayed
 
   context "User is signed in" do
     before(:each) do
