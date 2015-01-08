@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
 
   resources :drinks do
-    resources :reviews, only: [:create, :index]
+    resources :reviews, only: [:create, :index, :edit, :update]
   end
+
 
   namespace :admin do
     get "/", to: "dashboards#show"
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
     resources :drinks, only: [:index, :show, :destroy]
     resources :reviews, only: [:destroy]
   end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

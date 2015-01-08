@@ -63,6 +63,7 @@
 <% if @reviews %>
   <% @reviews.each do |review| %>
     <div>
+
       <% if signed_in? && current_user.role == "admin" %>
         <%= button_to "Delete Review", admin_review_path(review),
             method: :delete, title: "Destroy_Review_#{review.id}" %>
@@ -70,8 +71,10 @@
       <%= review.created_at %>
       <%= review.user.username %>
       Rating: <%= review.rating %>
+
       <h5><%= review.title %></h5>
-      <p><%= review.body %>
+      <p><%= review.body %></p>
+      <p><%= link_to("Edit review", edit_drink_review_path(@drink, review)) %> </p>
     </div>
   <% end %>
 <% end %>
