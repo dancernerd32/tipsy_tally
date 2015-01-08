@@ -1,7 +1,8 @@
 class Review < ActiveRecord::Base
   belongs_to :drink
   belongs_to :user
-  has_many :votes
+  has_many :votes,
+           dependent: :destroy
 
   validates :rating,
             presence: true,
