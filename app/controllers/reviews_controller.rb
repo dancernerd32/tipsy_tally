@@ -18,7 +18,10 @@ class ReviewsController < ApplicationController
 
   def upvote
     authenticate_user!
-    @vote = Vote.find_or_initialize_by(user_id: current_user.id, review_id: params[:review_id])
+    @vote = Vote.find_or_initialize_by(
+      user_id: current_user.id,
+      review_id: params[:review_id]
+      )
     if @vote.score == 1
       @vote.score = 0
     else
@@ -32,7 +35,10 @@ class ReviewsController < ApplicationController
 
   def downvote
     authenticate_user!
-    @vote = Vote.find_or_initialize_by(user_id: current_user.id, review_id: params[:review_id])
+    @vote = Vote.find_or_initialize_by(
+      user_id: current_user.id,
+      review_id: params[:review_id]
+      )
     if @vote.score == -1
       @vote.score = 0
     else

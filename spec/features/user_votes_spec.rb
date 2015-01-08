@@ -13,7 +13,7 @@ feature "User votes on a reivew", %{
     # [X] I can not up vote or down vote the same review twice
     # [X] I must be signed in to cast a vote
     # [X] If I click the down vote or up vote button a second time,
-    #     I delete my vote.
+    #   I delete my vote.
 
   context "User is signed in" do
     before(:each) do
