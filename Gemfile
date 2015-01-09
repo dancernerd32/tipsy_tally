@@ -14,7 +14,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'carrierwave'
 
-# Added for carrierwave thumbnails	
+# Added for carrierwave thumbnails
 gem 'mini_magick'
 
 # Use jquery as the JavaScript library
@@ -24,6 +24,9 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rails_12factor', group: :production
+
+# Scope & Engine based paginator
+gem 'kaminari'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -45,7 +48,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'coveralls', require: false
+gem 'coveralls', require: false
 end
 gem 'rspec-rails', group: [:development, :test]
 gem 'capybara', group: [:development, :test]

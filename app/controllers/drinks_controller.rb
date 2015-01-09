@@ -19,7 +19,10 @@ class DrinksController < ApplicationController
 
   def show
     @drink = Drink.find(params[:id])
-    @review = @drink.reviews.build
+    @reviews = @drink.reviews.page params[:page]
+    @review = Review.new
+    @review.drink = @drink
+    @rating_average = @drink.reviews.average("rating")
   end
 
   def edit
@@ -52,12 +55,19 @@ class DrinksController < ApplicationController
     end
   end
 
-  def destroy
-    flash[:notice] = "Successfully deleted drink"
-    redirect_to drinks_path
+  def index
+    @drinks = Drink.all.page params[:page]
   end
 
-  def index
+  def destroy
+    drink = Drink.find(params[:id])
+    if drink.destroy
+      flash[:notice] = "Successfully deleted drink"
+      redirect_to drinks_path
+    else
+      flash[:error] = "Unable to delete. Contact Support"
+      render "show"
+    end
   end
 
   private

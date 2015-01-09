@@ -9,6 +9,6 @@ describe Review do
 
   it { should belong_to :user }
   it { should belong_to :drink }
-  # it { should have_many :votes }
+  it { should have_many(:votes).dependent(:destroy) }
 
 end

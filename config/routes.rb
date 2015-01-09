@@ -1,9 +1,22 @@
 Rails.application.routes.draw do
-  root 'homes#index'
+  root "drinks#index"
   devise_for :users, except: [:destroy]
+  resources :users, only: [:show]
 
   resources :drinks do
-    resources :reviews, only: [:create, :index]
+    resources :reviews, only: [:create, :index, :edit, :update, :destroy] do
+      post "upvote"
+      post "downvote"
+    end
+  end
+
+  resources :votes, only: [:create]
+
+  namespace :admin do
+    get "/", to: "dashboards#show"
+    resources :users, only: [:index, :show, :destroy]
+    resources :drinks, only: [:index, :show, :destroy]
+    resources :reviews, only: [:destroy]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,6 +1,7 @@
 <h1> <%= @drink.name %> </h1>
 <div>
-  Created by: <%= @drink.user.username %>
+  Created by: <%= image_tag(@drink.user.avatar.url(:thumb)) %>
+              <%= @drink.user.username %>
 </div>
 <div>
   <% if @drink.alcoholic? %>
@@ -55,8 +56,46 @@
   <% end %>
 </div>
 
+<h1><%= @drink.name %> Reviews</h1>
+
+<% if @rating_average %>
+  <h2>Average Rating: <%= @rating_average %> </h2>
+<% end %>
+<% if @reviews %>
+  <% @reviews.each do |review| %>
+    <div>
+
+      <% if signed_in? && current_user.role == "admin" %>
+        <%= button_to "Delete Review", admin_review_path(review),
+            method: :delete, title: "Destroy_Review_#{review.id}" %>
+        <% end %>
+      <%= review.created_at %>
+      <%= review.user.username %>
+      Score: <%= review.votes.sum("score") %>
+      <%= button_to "+1",
+          drink_review_upvote_path(@drink,review),
+          method: :post %>
+      <%= button_to "-1",
+          drink_review_downvote_path(@drink,review),
+          method: :post %>
+      Rating: <%= review.rating %>
+
+      <h5><%= review.title %></h5>
+      <p><%= review.body %></p>
+      <% if current_user == review.user %>
+        <p>
+          <%= link_to("Edit review", edit_drink_review_path(@drink, review)) %>
+          <%= button_to "Delete Drink", drink_review_path(@drink, review),
+              method: :delete %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
 
 <% if current_user == @drink.user %>
   <%= link_to "Edit Drink", edit_drink_path(@drink) %>
   <%= button_to "Delete Drink", drink_path(@drink), method: :delete %>
 <% end %>
+
+<%= paginate @reviews %>

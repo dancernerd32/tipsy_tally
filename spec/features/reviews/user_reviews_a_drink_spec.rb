@@ -15,7 +15,7 @@ feature "User creates a review for a drink", %{
     # [x] I can optionally provide a body for the review
     # [x] If I submit my review successfully, it appears in the reviews page
     # [x] If I enter invalid information, I am presented with an error message
-    # and taken back to the drink page
+    #     and taken back to the drink page
 
     context "user is signed in" do
       before(:each) do
