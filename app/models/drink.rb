@@ -21,4 +21,12 @@ class Drink < ActiveRecord::Base
               if: :alcoholic,
               message: "can't be blank if alcoholic"
             }
+
+  def self.search(search)
+    if !search.nil? && !search.blank?
+      Drink.where("name LIKE ?", "%#{search}%")
+    else
+      Drink.all
+    end
+  end
 end

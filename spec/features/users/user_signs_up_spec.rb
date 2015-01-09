@@ -15,6 +15,7 @@ feature "user registers", %{
   #   an error message
 
   scenario "provide valid registration information - no avatar" do
+
     visit new_user_registration_path
 
     fill_in "Email", with: "john@example.com"
@@ -27,6 +28,10 @@ feature "user registers", %{
     expect(find("img")["src"]).to have_content "default.jpg"
     expect(page).to have_content("Welcome! You have signed up successfully.")
     expect(page).to have_content("Sign Out")
+
+    expect(ActionMailer::Base.deliveries.size).to eq(1)
+    last_email = ActionMailer::Base.deliveries.last
+
   end
 
   scenario "provide valid registration information - with avatar" do

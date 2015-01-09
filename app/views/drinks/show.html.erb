@@ -32,15 +32,15 @@
     <div>
       <%= f.label :rating %>
       <%= f.radio_button(:rating, 1) %>
-      <%= f.label :rating, 1 %>
+      <%= f.label :rating, 1, value: 1  %>
       <%= f.radio_button(:rating, 2) %>
-      <%= f.label :rating, 2 %>
+      <%= f.label :rating, 2, value: 2%>
       <%= f.radio_button(:rating, 3) %>
-      <%= f.label :rating, 3 %>
+      <%= f.label :rating, 3, value: 3 %>
       <%= f.radio_button(:rating, 4) %>
-      <%= f.label :rating, 4 %>
+      <%= f.label :rating, 4, value: 4 %>
       <%= f.radio_button(:rating, 5) %>
-      <%= f.label :rating, 5 %>
+      <%= f.label :rating, 5, value: 5 %>
     </div>
     <div>
       <%= f.label :title %>
@@ -73,11 +73,9 @@
       <%= review.user.username %>
       Score: <%= review.votes.sum("score") %>
       <%= button_to "+1",
-          drink_review_upvote_path(@drink,review),
-          method: :post %>
+          drink_review_upvotes_path(@drink,review) %>
       <%= button_to "-1",
-          drink_review_downvote_path(@drink,review),
-          method: :post %>
+          drink_review_downvotes_path(@drink,review) %>
       Rating: <%= review.rating %>
 
       <h5><%= review.title %></h5>

@@ -5,8 +5,8 @@ Rails.application.routes.draw do
 
   resources :drinks do
     resources :reviews, only: [:create, :index, :edit, :update, :destroy] do
-      post "upvote"
-      post "downvote"
+      resources :upvotes, only: [:create]
+      resources :downvotes, only: [:create]
     end
   end
 
