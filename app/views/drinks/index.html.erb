@@ -1,7 +1,12 @@
-<ul>
-  <% @drinks.each do |drink| %>
-    <li><%= link_to drink.name, drink_path(drink) %></li>
-  <% end %>
-</ul>
-
-<%= paginate @drinks %>
+<div class = "home">
+  <%= image_tag("shots.jpg") %>
+</div>
+<div class= "drinks">
+  <h1>Drinks</h1>
+  <ul>
+    <% @drinks.each do |drink| %>
+      <li><%= link_to drink.name, drink_path(drink) %></li>
+    <% end %>
+    <%= paginate @drinks %>
+  </ul>
+</div>

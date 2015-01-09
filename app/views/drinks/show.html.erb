@@ -77,7 +77,7 @@
     <div class= "row">
       <div class= "large-6 columns">
         <div>
-          <%= f.submit "Submit Review" %>
+          <%= f.submit "Submit Review", class: "small button" %>
         </div>
       </div>
     </div>
@@ -105,29 +105,34 @@
         <%= button_to "Delete Review", admin_review_path(review),
             method: :delete, title: "Destroy_Review_#{review.id}" %>
         <% end %>
-      </div>
-
       <div class= "row">
         <%= review.created_at %>
         <%= review.user.username %>
         Score: <%= review.votes.sum("score") %>
       </div>
+
       <div class= "row">
-        <%= button_to "+1",
-            drink_review_upvotes_path(@drink,review) %>
-        <%= button_to "-1",
-            drink_review_downvotes_path(@drink,review) %>
-            Rating: <%= review.rating %>
+        <%= button_to "Like",
+            drink_review_upvote_path(@drink,review),
+            method: :post, class: "small button" %>
+      </div>
+
+      <div class= "row">
+        <%= button_to "Dislike",
+            drink_review_downvote_path(@drink,review),
+            method: :post, class: "small button" %>
+      </div>
+
+      <div class= "row">
+        Rating: <%= review.rating %>
       </div>
 
       <div class= "row">
         <h5><%= review.title %></h5>
       </div>
-
       <div class= "row">
         <p><%= review.body %></p>
       </div>
-
       <% if current_user == review.user %>
         <div class= "row">
           <p>
@@ -143,8 +148,9 @@
 
 <% if current_user == @drink.user %>
   <div class= "row">
-    <%= link_to "Edit Drink", edit_drink_path(@drink) %>
-    <%= button_to "Delete Drink", drink_path(@drink), method: :delete %>
+    <%= link_to "Edit Drink", edit_drink_path(@drink), class: "small button" %>
+    <%= button_to "Delete Drink", drink_path(@drink), method: :delete,
+        class: "small button" %>
   </div>
 <% end %>
 
