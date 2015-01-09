@@ -11,4 +11,10 @@ describe Review do
   it { should belong_to :drink }
   it { should have_many(:votes).dependent(:destroy) }
 
+  # it 'should send a confirmation' do
+  # 	ActionMailer::Base.deliveries = []
+  # 	FactoryGirl.build(:review)
+  # 	expect(ActionMailer::Base.deliveries.size).to eql(1)
+  # end
+
 end
