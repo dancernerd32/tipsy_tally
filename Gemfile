@@ -24,6 +24,9 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+# Scope & Engine based paginator
+gem 'kaminari'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'fog'
@@ -44,7 +47,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'coveralls', require: false
+gem 'coveralls', require: false
 end
 gem 'rspec-rails', group: [:development, :test]
 gem 'capybara', group: [:development, :test]

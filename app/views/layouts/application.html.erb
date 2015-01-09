@@ -38,6 +38,12 @@
           <li><%= link_to 'Sign In', new_user_session_path %></li>
         <%- end -%>
       </ul>
+    <ul class="left">
+      <li> <%= form_tag drinks_path, method: 'get' do %>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search", name: nil %>
+      </li>
+      <% end %>
     </section>
   </nav>
 
