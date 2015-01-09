@@ -21,6 +21,7 @@ class Review < ActiveRecord::Base
     user_id: user_id,
     review_id: review_id
     )
+    # If the user has already votes, removes vote (sets it to 0)
     if vote.score == 1
       vote.score = 0
     else
@@ -34,6 +35,7 @@ class Review < ActiveRecord::Base
     user_id: user_id,
     review_id: review_id
     )
+    # If the user has already votes, removes vote (sets it to 0)
     if vote.score == -1
       vote.score = 0
     else
