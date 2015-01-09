@@ -113,13 +113,13 @@
 
       <div class= "row">
         <%= button_to "Like",
-            drink_review_upvote_path(@drink,review),
+            drink_review_upvotes_path(@drink,review),
             method: :post, class: "small button" %>
       </div>
 
       <div class= "row">
         <%= button_to "Dislike",
-            drink_review_downvote_path(@drink,review),
+            drink_review_downvotes_path(@drink,review),
             method: :post, class: "small button" %>
       </div>
 

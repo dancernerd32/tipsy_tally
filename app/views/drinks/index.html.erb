@@ -7,6 +7,6 @@
     <% @drinks.each do |drink| %>
       <li><%= link_to drink.name, drink_path(drink) %></li>
     <% end %>
-    <%= paginate @drinks %>
   </ul>
+  <%= paginate @drinks %>
 </div>

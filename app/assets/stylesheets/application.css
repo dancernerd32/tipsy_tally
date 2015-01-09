@@ -91,6 +91,7 @@ label{
 }
 .top-bar-section .has-form{
   background: #2b2929;
+}
 .drinks{
   position:absolute;
   right:25%;
@@ -104,4 +105,10 @@ label{
   padding-right: 1.5rem;
   padding-bottom: 0.8rem;
   padding-left: 1.5rem;
+}
+.top-bar .button{
+  padding: 5px;
+}
+.top-bar input{
+  width:100px;
 }

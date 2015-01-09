@@ -39,19 +39,20 @@
         <%- end -%>
       </ul>
 
-    <ul class="left">
-      <li class="has-form">
-        <div class="row collapse">
-          <div class="large-8 small-9 columns">
-            <%= form_tag drinks_path, method: 'get' do %>
-            <%= text_field_tag :search, params[:search] %>
-          </div>
-          <div class="large-4 small-3 columns">
+      <ul class="left">
+        <%= form_tag drinks_path, method: 'get' do %>
+          <li class="has-form">
+            <div class="row collapse">
+              <div class="large-8 small-9 columns">
+                <%= text_field_tag :search, params[:search] %>
+          </li>
+          <li>
             <%= submit_tag "Search", name: nil, class: "button expand" %>
-            <% end %>
-          </div>
+          </li>
         </div>
-      </li>
+      </div>
+        <% end %>
+      </ul>
     </section>
   </nav>
 
