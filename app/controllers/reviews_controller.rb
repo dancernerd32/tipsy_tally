@@ -46,22 +46,6 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def upvote
-    authenticate_user!
-    review = Review.find(params[:review_id])
-    review.upvote(current_user.id, review.id)
-    flash[:notice] = "Voted Successfully"
-    redirect_to drink_path(params[:drink_id])
-  end
-
-  def downvote
-    authenticate_user!
-    review = Review.find(params[:review_id])
-    review.downvote(current_user.id, review.id)
-    flash[:notice] = "Voted Successfully"
-    redirect_to drink_path(params[:drink_id])
-  end
-
   private
 
   def review_params
