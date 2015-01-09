@@ -26,32 +26,51 @@
 </div>
 
 <div>
-
+  <div class= "row">
+    <div class= "large-6 columns">
+      <h2>Review this drink:</h2>
+    </div>
+  </div>
   <%= form_for([@drink, @review]) do |f| %>
-
-    <div>
-      <%= f.label :rating %>
-      <%= f.radio_button(:rating, 1) %>
-      <%= f.label :rating, 1 %>
-      <%= f.radio_button(:rating, 2) %>
-      <%= f.label :rating, 2 %>
-      <%= f.radio_button(:rating, 3) %>
-      <%= f.label :rating, 3 %>
-      <%= f.radio_button(:rating, 4) %>
-      <%= f.label :rating, 4 %>
-      <%= f.radio_button(:rating, 5) %>
-      <%= f.label :rating, 5 %>
+    <div class= "row">
+      <div class= "large-6 columns">
+        <div>
+          <%= f.label :rating %>
+          <%= f.radio_button(:rating, 1) %>
+          <%= f.label :rating, 1 %>
+          <%= f.radio_button(:rating, 2) %>
+          <%= f.label :rating, 2 %>
+          <%= f.radio_button(:rating, 3) %>
+          <%= f.label :rating, 3 %>
+          <%= f.radio_button(:rating, 4) %>
+          <%= f.label :rating, 4 %>
+          <%= f.radio_button(:rating, 5) %>
+          <%= f.label :rating, 5 %>
+        </div>
+      </div>
     </div>
-    <div>
-      <%= f.label :title %>
-      <%= f.text_field :title %>
+    <div class= "row">
+      <div class= "large-6 columns">
+        <div>
+          <%= f.label :title %>
+          <%= f.text_field :title %>
+        </div>
+      </div>
     </div>
-    <div>
-      <%= f.label :body %>
-      <%= f.text_field :body %>
+    <div class= "row">
+      <div class= "large-6 columns">
+        <div>
+          <%= f.label :body %>
+          <%= f.text_field :body %>
+        </div>
+      </div>
     </div>
-    <div>
-      <%= f.submit "Submit Review" %>
+    <div class= "row">
+      <div class= "large-6 columns">
+        <div>
+          <%= f.submit "Submit Review" %>
+        </div>
+      </div>
     </div>
   <% end %>
 </div>
