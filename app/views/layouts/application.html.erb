@@ -3,6 +3,8 @@
 <head>
   <title>TipsyTally</title>
   <%= stylesheet_link_tag 'application', media: 'all' %>
+  <link href='http://fonts.googleapis.com/css?family=Sorts+Mill+Goudy:400,400italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Sorts+Mill+Goudy|News+Cycle:400,700' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -10,7 +12,7 @@
   <nav class="top-bar">
     <ul class="title-area">
       <li class="name">
-        <h1><a href="/">TipsyTally</a></h1>
+        <h1><a href="/drinks">TipsyTally</a></h1>
       </li>
     </ul>
 
@@ -36,12 +38,21 @@
           <li><%= link_to 'Sign In', new_user_session_path %></li>
         <%- end -%>
       </ul>
-    <ul class="left">
-      <li> <%= form_tag drinks_path, method: 'get' do %>
-        <%= text_field_tag :search, params[:search] %>
-        <%= submit_tag "Search", name: nil %>
-      </li>
-      <% end %>
+
+      <ul class="left">
+        <%= form_tag drinks_path, method: 'get' do %>
+          <li class="has-form">
+            <div class="row collapse">
+              <div class="large-8 small-9 columns">
+                <%= text_field_tag :search, params[:search] %>
+          </li>
+          <li>
+            <%= submit_tag "Search", name: nil, class: "button expand" %>
+          </li>
+        </div>
+      </div>
+        <% end %>
+      </ul>
     </section>
   </nav>
 
