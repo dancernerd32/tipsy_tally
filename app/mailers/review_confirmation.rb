@@ -1,7 +1,5 @@
 class ReviewConfirmation < ApplicationMailer
-	default from: "michael.foster@outlook.com",
-	return_path: "michael.foster@outlook.com"
-
+	default from: "tipsy-tally@gmail.com"
 	def conf_mail(user, drink)
 		@user = user
 		@drink = drink
