@@ -54,6 +54,9 @@ feature "User creates a review for a drink", %{
 
         expect(ActionMailer::Base.deliveries.size).to eql(1)
         last_email = ActionMailer::Base.deliveries.last
+        expect(last_email).to have_subject("A review has been posted on your drink")
+        expect(last_email).to deliver_to(review_drink.user.email)
+        expect(last_email).to have_body_text("A user has posted a review of your drink, #{review_drink.name}")
 
 
       end

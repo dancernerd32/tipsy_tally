@@ -3,7 +3,9 @@ class ReviewConfirmation < ApplicationMailer
 	return_path: 'michael.foster@outlook.com'
 
 	def conf_mail(user, drink)
-		mail( to: 'michael.foster@outlook.com',
-		subject: 'Review succesfully posted' )
+		@user = user
+		@drink = drink
+		mail( to: @user.email,
+		subject: 'A review has been posted on your drink')
   end
 end
