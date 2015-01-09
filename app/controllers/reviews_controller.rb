@@ -45,7 +45,7 @@ class ReviewsController < ApplicationController
       redirect_to drink_path(review.drink)
     end
   end
-  
+
   private
 
   def review_params
