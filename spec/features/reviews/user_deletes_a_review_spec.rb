@@ -7,12 +7,10 @@ feature "User deletes a review", %{
 } do
 
   # Acceptance Criteria
-  # [] I must be logged in
-  # [] I can only delete my own review
-  # [] When I delete my review, I am taken to the drink page and given a success
+  # [x] I must be logged in
+  # [x] I can only delete my own review
+  # [x] When I delete my review, I am taken to the drink page and given a success
   #    message
-  # [] If I am not logged in, I do not see an option to delete review
-  # [] If the review is not mine, I do not see an option to delete review
 
   context "authenticated user" do
     before(:each) do
@@ -42,7 +40,7 @@ feature "User deletes a review", %{
 
     end
 
-    scenario "User tries to delete another user's review" do
+    scenario "User cannot see delete option for another user's review" do
       review = FactoryGirl.create(:review)
       drink = Drink.find(review.drink_id)
 
@@ -54,7 +52,7 @@ feature "User deletes a review", %{
 
   end
 
-  scenario "Unauthenticated user tries to delete a review" do
+  scenario "Unauthenticated user cannot see delete option" do
 
     review = FactoryGirl.create(:review)
     drink = Drink.find(review.drink_id)
