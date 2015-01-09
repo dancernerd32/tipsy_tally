@@ -14,10 +14,10 @@
     <%= f.text_field :name %>
   </div>
   <div>
-    <%= f.label :alcoholic, 'Yes' %>
     <%= f.radio_button(:alcoholic,'true') %>
-    <%= f.label :alcoholic, 'No' %>
+    <%= f.label :alcoholic, 'Yes', value: 'No' %>
     <%= f.radio_button(:alcoholic,'false') %>
+    <%= f.label :alcoholic, 'No', value: 'No' %>
   </div>
   <p>Liquors (if any)</p>
   <div>
