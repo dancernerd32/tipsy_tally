@@ -91,12 +91,12 @@
       <%= review.created_at %>
       <%= review.user.username %>
       Score: <%= review.votes.sum("score") %>
-      <%= button_to "+1",
+      <%= button_to "Like",
           drink_review_upvote_path(@drink,review),
-          method: :post %>
-      <%= button_to "-1",
+          method: :post, class: "small button" %>
+      <%= button_to "Dislike",
           drink_review_downvote_path(@drink,review),
-          method: :post %>
+          method: :post, class: "small button" %>
       Rating: <%= review.rating %>
 
       <h5><%= review.title %></h5>
