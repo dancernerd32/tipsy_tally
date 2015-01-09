@@ -17,8 +17,9 @@
  */
 
 body{
-  font-family: 'Sorts Mill Goudy', serif;
+  font-family: 'News Cycle', sans-serif;
   color: #fff;
+  font-size: 18px;
 }
 h1{
   font-family: "Sorts Mill Goudy", serif;
@@ -29,9 +30,12 @@ label{
 }
 h2{
   color: #fff;
+  font-family: 'News Cycle', sans-serif;
 }
 a{
   color: #5fcbff;
+  font-family: 'News Cycle';
+  font-size: 18px;
 }
 a:hover{
   color: #ffb011;
@@ -54,22 +58,37 @@ body{
   color: white;
 }
 .top-bar{
-  background: #000000;
+  background: #2b2929;
 }
 .top-bar-section li:not(.has-form) a:not(.button):hover{
-  background: #000000;
+  background: #2b2929;
   color: #5fcbff;
+  font-family: 'News Cycle', sans-serif;
 }
 .top-bar-section li:not(.has-form) a:not(.button){
-  background: #000000;
+  background: #2b2929;
+  font-family: 'News Cycle', sans-serif;
 }
 .top-bar .name h1 a:hover{
   color: #5fcbff;
+  background: #2b2929;
 }
 .flash-alert{
   background-color: #a01010;
   padding: 5px;
   box-shadow: 4px 4px 3px #7a0000;
-  font-family: 'Josefin Sans', sans-serif;
-  font-weight: bold;
+  font-family: 'News Cycle', sans-serif;
+}
+input[type="checkbox"], input[type="radio"]{
+  transform: scale(1.5);
+}
+label{
+  font-size: 1rem;
+  font-family: 'News Cycle';
+}
+.liquors label:hover{
+  color: #5fcbff;
+}
+.top-bar-section .has-form{
+  background: #2b2929;
 }

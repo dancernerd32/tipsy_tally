@@ -4,7 +4,7 @@
   <title>TipsyTally</title>
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <link href='http://fonts.googleapis.com/css?family=Sorts+Mill+Goudy:400,400italic' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Sorts+Mill+Goudy|News+Cycle:400,700' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -38,12 +38,20 @@
           <li><%= link_to 'Sign In', new_user_session_path %></li>
         <%- end -%>
       </ul>
+
     <ul class="left">
-      <li> <%= form_tag drinks_path, method: 'get' do %>
-        <%= text_field_tag :search, params[:search] %>
-        <%= submit_tag "Search", name: nil %>
+      <li class="has-form">
+        <div class="row collapse">
+          <div class="large-8 small-9 columns">
+            <%= form_tag drinks_path, method: 'get' do %>
+            <%= text_field_tag :search, params[:search] %>
+          </div>
+          <div class="large-4 small-3 columns">
+            <%= submit_tag "Search", name: nil, class: "button expand" %>
+            <% end %>
+          </div>
+        </div>
       </li>
-      <% end %>
     </section>
   </nav>
 

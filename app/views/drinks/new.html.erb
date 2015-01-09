@@ -1,38 +1,81 @@
-<h1> New Drink </h1>
+<div class= "row">
+</div>
+<div class= "row">
+</div>
+<div class= "row">
+  <div class= "large-6 columns">
+    <h1> New Drink </h1>
+  </div>
+</div>
+
+
 <% if @drink.errors.any? %>
   <ul>
     <% @drink.errors.full_messages.each do |message| %>
-      <li> <%= message %> </li>
+    <div class= "row">
+      <div class= "large-6 columns">
+        <li> <%= message %> </li>
+      </div>
+    </div>
     <% end %>
   </ul>
 <% end %>
 
 
 <%= form_for @drink do |f| %>
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+  <div class= "row">
+    <div class= "large-6 columns">
+      <div>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.radio_button(:alcoholic,'true') %>
-    <%= f.label :alcoholic, 'Yes', value: 'true' %>
-    <%= f.radio_button(:alcoholic,'false') %>
-    <%= f.label :alcoholic, 'No', value: 'false' %>
+  
+  <div class= "row">
+    <div class= "large-6 columns">
+      <div>
+        <%= f.radio_button(:alcoholic,'true') %>
+        <%= f.label :alcoholic, 'Yes' %>
+        <%= f.radio_button(:alcoholic,'false') %>
+        <%= f.label :alcoholic, 'No' %>
+      </div>
+    </div>
   </div>
-  <p>Liquors (if any)</p>
-  <div>
-    <%= f.collection_check_boxes :liquor_ids,
-      @liquors,
-      :id,
-      :name
-    %>
+
+  <div class= "row">
+    <div class= "large-6 columns">
+      <p>Liquors (if any)</p>
+    </div>
   </div>
-  <div>
-    <%= f.label :description %>
-    <%= f.text_area :description %>
+
+  <div class= "row">
+    <div class= "large-6 columns">
+      <div>
+        <%= f.collection_check_boxes :liquor_ids,
+          @liquors,
+          :id,
+          :name
+        %>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= f.submit "Submit" %>
+
+  <div class= "row">
+    <div class= "large-6 columns">
+      <div>
+        <%= f.label :description %>
+        <%= f.text_area :description %>
+      </div>
+    </div>
+  </div>
+
+  <div class= "row">
+    <div class= "large-6 columns">
+      <div>
+        <%= f.submit "Submit" %>
+      </div>
+    </div>
   </div>
 
 <% end %>
