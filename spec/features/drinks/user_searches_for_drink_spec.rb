@@ -19,6 +19,7 @@ feature "User searches for a drink", %{
 		visit root_path
 
 		fill_in "search", with: "beer"
+
 		click_on "Search"
 
 		expect(page).to have_link "beer"

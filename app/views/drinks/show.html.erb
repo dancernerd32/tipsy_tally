@@ -1,9 +1,13 @@
-<h1> <%= @drink.name %> </h1>
-<div>
+<div class= "row">
+  <h1> <%= @drink.name %> </h1>
+</div>
+
+<div class= "row">
   Created by: <%= image_tag(@drink.user.avatar.url(:thumb)) %>
               <%= @drink.user.username %>
 </div>
-<div>
+
+<div class= "row">
   <% if @drink.alcoholic? %>
     <h2>Liquors</h2>
     <% @drink.liquors.each do |liquor| %>
@@ -11,7 +15,8 @@
     <% end %>
   <% end %>
 </div>
-<div>
+
+<div class= "row">
   <p> <%= @drink.description %> </p>
 </div>
 
@@ -26,74 +31,129 @@
 </div>
 
 <div>
-
+  <div class= "row">
+    <div class= "large-6 columns">
+      <h2>Review this drink:</h2>
+    </div>
+  </div>
   <%= form_for([@drink, @review]) do |f| %>
 
-    <div>
-      <%= f.label :rating %>
-      <%= f.radio_button(:rating, 1) %>
-      <%= f.label :rating, 1, value: 1  %>
-      <%= f.radio_button(:rating, 2) %>
-      <%= f.label :rating, 2, value: 2%>
-      <%= f.radio_button(:rating, 3) %>
-      <%= f.label :rating, 3, value: 3 %>
-      <%= f.radio_button(:rating, 4) %>
-      <%= f.label :rating, 4, value: 4 %>
-      <%= f.radio_button(:rating, 5) %>
-      <%= f.label :rating, 5, value: 5 %>
+  <div class= "row">
+    <div class= "large-6 columns">
+      <div>
+        <%= f.label :rating %>
+        <%= f.radio_button(:rating, 1) %>
+        <%= f.label :rating, 1, value: 1  %>
+        <%= f.radio_button(:rating, 2) %>
+        <%= f.label :rating, 2, value: 2%>
+        <%= f.radio_button(:rating, 3) %>
+        <%= f.label :rating, 3, value: 3 %>
+        <%= f.radio_button(:rating, 4) %>
+        <%= f.label :rating, 4, value: 4 %>
+        <%= f.radio_button(:rating, 5) %>
+        <%= f.label :rating, 5, value: 5 %>
+      </div>
     </div>
-    <div>
-      <%= f.label :title %>
-      <%= f.text_field :title %>
+  </div>
+
+    <div class= "row">
+      <div class= "large-6 columns">
+        <div>
+          <%= f.label :title %>
+          <%= f.text_field :title %>
+        </div>
+      </div>
     </div>
-    <div>
-      <%= f.label :body %>
-      <%= f.text_field :body %>
+
+    <div class= "row">
+      <div class= "large-6 columns">
+        <div>
+          <%= f.label :body %>
+          <%= f.text_field :body %>
+        </div>
+      </div>
     </div>
-    <div>
-      <%= f.submit "Submit Review" %>
+
+    <div class= "row">
+      <div class= "large-6 columns">
+        <div>
+          <%= f.submit "Submit Review", class: "small button" %>
+        </div>
+      </div>
     </div>
+
   <% end %>
 </div>
 
-<h1><%= @drink.name %> Reviews</h1>
+<div class= "row">
+  <h1><%= @drink.name %> Reviews</h1>
+</div>
+
 
 <% if @rating_average %>
-  <h2>Average Rating: <%= @rating_average %> </h2>
+  <div class= "row">
+    <h2>Average Rating: <%= @rating_average %> </h2>
+  </div>
 <% end %>
 <% if @reviews %>
-  <% @reviews.each do |review| %>
-    <div>
+  <div class= "row">
+    <% @reviews.each do |review| %>
+  </div>
 
       <% if signed_in? && current_user.role == "admin" %>
+      <div class= "row">
         <%= button_to "Delete Review", admin_review_path(review),
             method: :delete, title: "Destroy_Review_#{review.id}" %>
         <% end %>
-      <%= review.created_at %>
-      <%= review.user.username %>
-      Score: <%= review.votes.sum("score") %>
-      <%= button_to "+1",
-          drink_review_upvotes_path(@drink,review) %>
-      <%= button_to "-1",
-          drink_review_downvotes_path(@drink,review) %>
-      Rating: <%= review.rating %>
+      <div class= "row">
+        <%= review.created_at %>
+        <%= review.user.username %>
+        Score: <%= review.votes.sum("score") %>
+      </div>
 
-      <h5><%= review.title %></h5>
-      <p><%= review.body %></p>
+      <div class= "row">
+        <%= button_to "Like",
+            drink_review_upvotes_path(@drink,review),
+            method: :post, class: "small button" %>
+      </div>
+
+      <div class= "row">
+        <%= button_to "Dislike",
+            drink_review_downvotes_path(@drink,review),
+            method: :post, class: "small button" %>
+      </div>
+
+      <div class= "row">
+        Rating: <%= review.rating %>
+      </div>
+
+      <div class= "row">
+        <h5><%= review.title %></h5>
+      </div>
+      <div class= "row">
+        <p><%= review.body %></p>
+      </div>
       <% if current_user == review.user %>
-        <p>
-          <%= link_to("Edit review", edit_drink_review_path(@drink, review)) %>
-          <%= button_to "Delete Drink", drink_review_path(@drink, review),
-              method: :delete %>
-        </p>
+        <div class= "row">
+          <p>
+            <%= link_to("Edit review", edit_drink_review_path(@drink, review)) %>
+            <%= button_to "Delete Drink", drink_review_path(@drink, review),
+                method: :delete %>
+          </p>
+        </div>
       <% end %>
     </div>
   <% end %>
 <% end %>
 
 <% if current_user == @drink.user %>
-  <%= link_to "Edit Drink", edit_drink_path(@drink) %>
-  <%= button_to "Delete Drink", drink_path(@drink), method: :delete %>
+  <div class= "row">
+    <%= link_to "Edit Drink", edit_drink_path(@drink), class: "small button" %>
+    <%= button_to "Delete Drink", drink_path(@drink), method: :delete,
+        class: "small button" %>
+  </div>
 <% end %>
 
-<%= paginate @reviews %>
+<div class= "row">
+  <%= paginate @reviews %>
+</div>

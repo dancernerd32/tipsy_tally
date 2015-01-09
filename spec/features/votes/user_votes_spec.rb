@@ -32,28 +32,28 @@ feature "User votes on a reivew", %{
 
     scenario "User clicks the upvote button" do
 
-      click_on "+1"
+      click_on "Like"
 
       expect(page).to have_content "Score: 1"
     end
 
     scenario "User clicks the downvote button" do
 
-      click_on "-1"
+      click_on "Dislike"
 
       expect(page).to have_content "Score: -1"
     end
 
     scenario "User resets their vote from up" do
-      click_on "+1"
-      click_on "+1"
+      click_on "Like"
+      click_on "Like"
 
       expect(page).to have_content "Score: 0"
     end
 
     scenario "User resets their vote from down" do
-      click_on "-1"
-      click_on "-1"
+      click_on "Dislike"
+      click_on "Dislike"
 
       expect(page).to have_content "Score: 0"
     end
@@ -64,7 +64,7 @@ feature "User votes on a reivew", %{
 
     visit drink_path(@review.drink)
 
-    click_on "+1"
+    click_on "Like"
 
     expect(page).to have_content("sign up before continuing")
   end
@@ -84,7 +84,7 @@ feature "User votes on a reivew", %{
 
       visit drink_path(review.drink)
 
-      click_on "+1"
+      click_on "Like"
       click_link "Sign Out"
     end
 
@@ -102,7 +102,7 @@ feature "User votes on a reivew", %{
 
       visit drink_path(review.drink)
 
-      click_on "-1"
+      click_on "Dislike"
       click_link "Sign Out"
     end
 
