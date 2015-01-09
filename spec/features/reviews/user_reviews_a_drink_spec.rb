@@ -18,7 +18,9 @@ feature "User creates a review for a drink", %{
     #     and taken back to the drink page
 
     context "user is signed in" do
+
       before(:each) do
+
         @existing_user = FactoryGirl.create(:user)
 
         visit new_user_session_path
@@ -30,6 +32,8 @@ feature "User creates a review for a drink", %{
       end
 
       scenario "user reviews a drink - with title and body" do
+
+        ActionMailer::Base.deliveries = []
 
         review = FactoryGirl.build(:review)
         review_drink = review.drink
@@ -47,6 +51,10 @@ feature "User creates a review for a drink", %{
         expect(page).to have_content review.title
         expect(page).to have_content review.body
         expect(page).to have_content review.rating
+
+        expect(ActionMailer::Base.deliveries.size).to eql(1)
+        last_email = ActionMailer::Base.deliveries.last
+
 
       end
 

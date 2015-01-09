@@ -7,6 +7,7 @@ class ReviewsController < ApplicationController
       if @review.save
         flash[:notice] = "Successfully added your review"
         redirect_to drink_path(@drink)
+        ReviewConfirmation.conf_mail(@drink, @user).deliver_now
       else
         render "drinks/show"
       end
