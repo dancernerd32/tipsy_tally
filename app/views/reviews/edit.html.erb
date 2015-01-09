@@ -1,35 +1,44 @@
-<div>
-
-  <%= form_for [@drink, @review] do |f| %>
-
-
+<div class= "row">
+  <div class= "large-6 columns">
+    <h1>Edit Review</h1>
+  </div>
+</div>
+<div class= "row">
+  <div class= "large-6 columns">
     <div>
-      <%= f.label :rating %>
-      <%= f.radio_button(:rating, 1) %>
-      <%= f.label :rating, 1 %>
-      <%= f.radio_button(:rating, 2) %>
-      <%= f.label :rating, 2 %>
-      <%= f.radio_button(:rating, 3) %>
-      <%= f.label :rating, 3 %>
-      <%= f.radio_button(:rating, 4) %>
-      <%= f.label :rating, 4 %>
-      <%= f.radio_button(:rating, 5) %>
-      <%= f.label :rating, 5 %>
-    </div>
 
-    <div>
-      <%= f.label :title %>
-      <%= f.text_field :title %>
-    </div>
+      <%= form_for [@drink, @review] do |f| %>
 
-    <div>
-      <%= f.label :body %>
-      <%= f.text_field :body %>
-    </div>
 
-    <div>
-      <%= f.submit "Update", class: "small button" %>
-    </div>
+        <div>
+          <%= f.label :rating %>
+          <%= f.radio_button(:rating, 1) %>
+          <%= f.label :rating, 1 %>
+          <%= f.radio_button(:rating, 2) %>
+          <%= f.label :rating, 2 %>
+          <%= f.radio_button(:rating, 3) %>
+          <%= f.label :rating, 3 %>
+          <%= f.radio_button(:rating, 4) %>
+          <%= f.label :rating, 4 %>
+          <%= f.radio_button(:rating, 5) %>
+          <%= f.label :rating, 5 %>
+        </div>
 
-  <% end %>
+        <div>
+          <%= f.label :title %>
+          <%= f.text_field :title %>
+        </div>
+
+        <div>
+          <%= f.label :body %>
+          <%= f.text_field :body %>
+        </div>
+
+        <div>
+          <%= f.submit "Update", class: "small button" %>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
 </div>

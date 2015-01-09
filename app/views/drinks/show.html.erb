@@ -68,7 +68,7 @@
     <div class= "row">
       <div class= "large-6 columns">
         <div>
-          <%= f.submit "Submit Review" %>
+          <%= f.submit "Submit Review", class: "small button" %>
         </div>
       </div>
     </div>
@@ -111,6 +111,7 @@
 <% end %>
 
 <% if current_user == @drink.user %>
-  <%= link_to "Edit Drink", edit_drink_path(@drink) %>
-  <%= button_to "Delete Drink", drink_path(@drink), method: :delete %>
+  <%= link_to "Edit Drink", edit_drink_path(@drink), class: "small button" %>
+  <%= button_to "Delete Drink", drink_path(@drink), method: :delete,
+      class: "small button" %>
 <% end %>
